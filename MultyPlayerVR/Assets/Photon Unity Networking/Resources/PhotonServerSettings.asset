@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
+  m_Name: PhotonServerSettings
+  m_EditorClassIdentifier: 
+  AppID: 02d71794-7bdc-4750-8a52-b80f86b46df0
+  VoiceAppID: e7b596a3-0a4a-4bf0-994e-e0717f01314a
+  ChatAppID: 
+  HostType: 1
+  PreferredRegion: 2
+  EnabledRegions: -1
+  Protocol: 0
+  ServerAddress: 
+  ServerPort: 5055
+  VoiceServerPort: 5055
+  JoinLobby: 0
+  EnableLobbyStatistics: 0
+  PunLogging: 0
+  NetworkLogging: 1
+  RunInBackground: 1
+  RpcList:
+  - 43686174
+  - 436f6c6f72527063
+  - 44657374726f79527063
+  - 446f4a756d70
+  - 466c617368
+  - 496e7374616e7469617465527063
+  - 4d6172636f
+  - 5069636b75704974656d496e6974
+  - 506f6c6f
+  - 50756e5069636b7570
+  - 50756e5069636b757053696d706c65
+  - 50756e5265737061776e
+  - 52657175657374466f725069636b75704974656d73
+  - 52657175657374466f725069636b757054696d6573
+  - 546167676564506c61796572
+  - 54616b6544616d6765
+  - Chat
+  - ColorRpc
+  - DestroyRpc
+  - DoJump
+  - Flash
+  - InstantiateRpc
+  - Marco
+  - PickupItemInit
+  - Polo
+  - PunDrop
+  - PunPickup
+  - PunPickupSimple
+  - PunRespawn
+  - RequestForPickupItems
+  - RequestForPickupTimes
+  - TaggedPlayer
+  - TakeDamge
+  - TurnOffGravity
+  - TurnOnGravity
+  DisableAutoOpenWizard: 1

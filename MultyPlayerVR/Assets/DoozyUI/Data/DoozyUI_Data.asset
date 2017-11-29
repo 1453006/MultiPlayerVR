@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8554838fbdfd5c44f9a3cfcddb1a5a7a, type: 3}
+  m_Name: DoozyUI_Data
+  m_EditorClassIdentifier: 
+  elementNames:
+  - elementName: ~Element Name~
+  - elementName: BG_DARK_LAYER_2
+  - elementName: MAIN_UI_TOP_BAR
+  - elementName: POPUP_ADS_SKIP_INFO
+  - elementName: POPUP_AIR_SHIP
+  - elementName: POPUP_ANIMAL_CAGE
+  - elementName: POPUP_ANIMAL_GROUP
+  - elementName: POPUP_ANIMAL_GROUP_INFO
+  - elementName: POPUP_ANIMAL_PICKER
+  - elementName: POPUP_BANK_MENU
+  - elementName: POPUP_BREEDZONE
+  - elementName: POPUP_BREEDZONE_INFO
+  - elementName: POPUP_BREEDZONE_MAIN
+  - elementName: POPUP_BREEDZONE_PICKER
+  - elementName: POPUP_BUILDING_SHOP_DETAIL
+  - elementName: POPUP_BUY_ITEM_QUICK
+  - elementName: POPUP_BUY_QUICK_FOOD
+  - elementName: POPUP_CHAR_SHOP_DETAIL
+  - elementName: POPUP_CHOOSING_PAYMENT_METHOD
+  - elementName: POPUP_DAILY_GIFT
+  - elementName: POPUP_DAILY_QUEST
+  - elementName: POPUP_DAILY_REWARD_CYCLE
+  - elementName: POPUP_DAILY_REWARD_CYCLE_SHOW_GIFT
+  - elementName: POPUP_EVENT_PACK
+  - elementName: POPUP_FARM_MENU
+  - elementName: POPUP_FEED_ANIMAL
+  - elementName: POPUP_FIELD_PLATFORM_SLOT
+  - elementName: POPUP_FISHING
+  - elementName: POPUP_GET_GIFT
+  - elementName: POPUP_GOAL
+  - elementName: POPUP_GOAL_COMPLETE
+  - elementName: POPUP_INFO_ANIMAL
+  - elementName: POPUP_ISLAND
+  - elementName: POPUP_LACKING_RESOURCE
+  - elementName: POPUP_LIBRARY
+  - elementName: POPUP_LIBRARY_ANIMAL
+  - elementName: POPUP_LIBRARY_GUIDE
+  - elementName: POPUP_MAIL_COMPOSE
+  - elementName: POPUP_MAIN_QUEST
+  - elementName: POPUP_MINI_GAME
+  - elementName: POPUP_MINIMAP
+  - elementName: POPUP_MINING_MENU
+  - elementName: POPUP_MINING_SETUP
+  - elementName: POPUP_NOTIFY_AMOUNT
+  - elementName: POPUP_NOTIFY_EVENT_PROGRESS
+  - elementName: POPUP_OBSTACLE
+  - elementName: POPUP_OBSTACLE_INFO
+  - elementName: POPUP_PACKAGE_COIN
+  - elementName: POPUP_PACKAGE_GOLD
+  - elementName: POPUP_PAYMENT_SUGGESTION
+  - elementName: POPUP_PLACE_ANIMAL
+  - elementName: POPUP_PRODUCE_ITEM
+  - elementName: POPUP_PROMO_ANIMAL
+  - elementName: POPUP_PROMO_GEM_PACK
+  - elementName: POPUP_PROMOTE_PAYMENT
+  - elementName: POPUP_QUICK_UPGRADE
+  - elementName: POPUP_RATE_US
+  - elementName: POPUP_SELECT_LANGUAGE
+  - elementName: POPUP_SETTING
+  - elementName: POPUP_SHOP
+  - elementName: POPUP_SHOP_DETAIL
+  - elementName: POPUP_SKIP_BUSY_ANIMAL
+  - elementName: POPUP_SKIP_TIME
+  - elementName: POPUP_STARTER_PACK
+  - elementName: POPUP_TAMING_HOUSE
+  - elementName: POPUP_TOXIC_MINE
+  - elementName: POPUP_UNLOCK_BIG_ZONE
+  - elementName: POPUP_UNLOCK_SMALL_ZONE
+  - elementName: POPUP_UPGRADE_BANK
+  - elementName: POPUP_UPGRADE_CAGE
+  - elementName: POPUP_UPGRADE_FARM
+  - elementName: POPUP_UPGRADE_TAMING_HOUSE
+  - elementName: POPUP_VILLAGE_INFO
+  - elementName: POPUP_WC_PACKAGE
+  - elementName: POPUP_WCEVENT
+  - elementName: PROMOTION_BAR
+  - elementName: SCREEN_EDIT_MODE
+  - elementName: SCREEN_MAIN_UI
+  - elementName: SIDEBAR_MENU
+  - elementName: UI_PLANTING
+  elementSounds:
+  - soundName: ~No Sound~
+  - soundName: Cartoon Siren Whistle In
+  - soundName: Cartoon Siren Whistle Out
+  - soundName: Musical Accent Mallets Low Soft Music
+  - soundName: Musical Mouthpiece Fart Fast Music
+  - soundName: Musical Tonal Crescendo Music
+  - soundName: Notification Drum Hit Bongos Reverb Music
+  - soundName: Ride Cymbal Scrape Music
+  - soundName: Ring Blast Explosion
+  - soundName: Shop Close
+  - soundName: Shop Open
+  - soundName: Slide In
+  - soundName: Slide Out
+  - soundName: Slow Down Magic
+  - soundName: Speed Up Magic
+  - soundName: Swells Bells Music
+  buttonNames:
+  - buttonName: ~Button Name~
+  - buttonName: ApplicationQuit
+  - buttonName: Back
+  - buttonName: Button_1
+  - buttonName: Button_2
+  - buttonName: Button_3
+  - buttonName: GoToInGameHud
+  - buttonName: GoToMainMenu
+  - buttonName: GoToPauseMenu
+  - buttonName: GoToQuitMenu
+  - buttonName: GoToSettingsMenu
+  - buttonName: GoToShopMenu
+  - buttonName: ToggleMusic
+  - buttonName: TogglePause
+  - buttonName: ToggleSound
+  buttonSounds:
+  - onClickSound: ~No Sound~
+  - onClickSound: Cartoon Car Toot-Toot
+  - onClickSound: Click Off
+  - onClickSound: Click On
+  - onClickSound: Pop
+  - onClickSound: Spring
