@@ -119,6 +119,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4697775282716280}
   - component: {fileID: 114157000234839602}
+  - component: {fileID: 95684186074870044}
+  - component: {fileID: 114532629389626742}
+  - component: {fileID: 114026868375457070}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -471,6 +474,49 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336260314681546}
   m_Enabled: 1
+--- !u!95 &95684186074870044
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867472689786494}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114026868375457070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867472689786494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 0
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 0
+  instantiationId: -1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!114 &114046474399137528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,6 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultLaser: {fileID: 1989007552409096}
+  visualPlayer: {fileID: 0}
   teleportController: {fileID: 114702333321225080}
   currentState: 0
 --- !u!114 &114206980178222264
@@ -632,7 +679,7 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 1
-  maxDistance: 20
+  maxDistance: 5
   maxSurfaceAngle: 45
   maxControllerPitch: 60
   maxVerticalGain: 10
@@ -642,9 +689,24 @@ MonoBehaviour:
   openFloorOffset: 0.25
   openSpaceLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967291
   active: 0
   debugRaycasting: 0
+--- !u!114 &114532629389626742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867472689786494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
 --- !u!114 &114559348375835582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -740,6 +802,7 @@ MonoBehaviour:
   transition: {fileID: 114073649636043942}
   allowRotation: 1
   rotationSpeed: 30
+  transitionSpeed: 2
   rotationDegreesIncrement: 20
 --- !u!114 &114754706607671518
 MonoBehaviour:
@@ -875,6 +938,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
 --- !u!124 &124908610656941178

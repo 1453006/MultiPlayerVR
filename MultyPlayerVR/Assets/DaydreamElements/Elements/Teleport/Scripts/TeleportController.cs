@@ -336,6 +336,10 @@ namespace DaydreamElements.Teleport
             {
                 player.rotation = Quaternion.Lerp(player.rotation,
                   finalRotation, rotationSpeed * Time.deltaTime);
+                //rotate avatar
+                if(Player.instance.visualPlayer)
+                    Player.instance.visualPlayer.transform.rotation = Quaternion.Lerp(player.rotation,
+                        finalRotation, rotationSpeed * Time.deltaTime);
 
                 if (player.rotation == finalRotation)
                 {

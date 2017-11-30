@@ -258,6 +258,9 @@ namespace DaydreamElements.ObjectManipulation
 
         public void OnPointerEnter(PointerEventData data)
         {
+            
+            if (Player.instance.currentState != Player.PlayerState.None)
+                return;
             Hover = true;
             Player.instance.currentState = Player.PlayerState.Selecting;
         }

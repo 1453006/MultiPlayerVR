@@ -18,7 +18,7 @@ new List<GvrPermissionsRequester.PermissionStatus>();
 
     private void Awake()
     {
-        spawnPoint = new Vector3(Random.RandomRange(0,3), 0, Random.RandomRange(0, 3));
+        spawnPoint = new Vector3(Random.RandomRange(0,3), 2, Random.RandomRange(0, 3));
         instance = this;
     }
     // Use this for initialization

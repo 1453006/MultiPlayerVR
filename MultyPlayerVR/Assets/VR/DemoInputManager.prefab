@@ -163,7 +163,6 @@ MonoBehaviour:
   reticlePointer: {fileID: 0}
   messageCanvas: {fileID: 0}
   messageText: {fileID: 0}
-  gvrEmulatedPlatformType: 0
 --- !u!114 &114782058535380308
 MonoBehaviour:
   m_ObjectHideFlags: 1

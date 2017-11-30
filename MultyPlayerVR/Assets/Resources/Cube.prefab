@@ -130,7 +130,7 @@ MonoBehaviour:
   SentPickup: 0
   currentOwnerID: 0
   minDistance: 0.5
-  maxDistance: 100
+  maxDistance: 10
   maintainFacing: 1
   rotationOnTouch: 1
   resetPhysicsOnDrop: 1
