@@ -57,10 +57,8 @@ public class NetworkPlayer : Photon.MonoBehaviour {
             // Lerping smooths the movement
             if (cameraTransform)
             {
-                Quaternion rot = Quaternion.Euler(cameraTransform.rotation.eulerAngles.x,
-                    cameraTransform.rotation.eulerAngles.y + this.transform.parent.rotation.eulerAngles.y,
-                    cameraTransform.rotation.eulerAngles.z);
-                visualHead.rotation = rot;
+              
+                visualHead.rotation = cameraTransform.rotation;
             }
             if(controllerTransform)
             {
