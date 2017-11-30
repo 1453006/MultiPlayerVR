@@ -94,6 +94,7 @@ namespace DaydreamElements.Teleport
 
         /// State tracking for completing animated rotations.
         private bool isRotating;
+      
         private Quaternion finalRotation;
 
         // The transform of the current controller.
@@ -162,6 +163,7 @@ namespace DaydreamElements.Teleport
 
             selectionIsActive = false;
             isRotating = false;
+           
 
             // Clear selection state.
             if (visualizer != null)
@@ -207,7 +209,8 @@ namespace DaydreamElements.Teleport
                 if (teleportStartTrigger.TriggerActive())
                 {
                     //if player is not ready for teleport then return
-                    if (Player.instance.currentState != Player.PlayerState.None)
+                    if (Player.instance.currentState != Player.PlayerState.None
+                      )
                         return;
                     StartTeleportSelection();
                 }
@@ -240,6 +243,11 @@ namespace DaydreamElements.Teleport
             {
                 if (selectionResult.selectionIsValid)
                 {
+
+                    detector.EndSelection();
+                    visualizer.EndSelection();
+             
+
                     nextPlayerPosition = new Vector3(
             selectionResult.selection.x,
             selectionResult.selection.y + playerHeight,
@@ -254,7 +262,7 @@ namespace DaydreamElements.Teleport
                         Player.instance.visualPlayer.transform.DOMove(nextPlayerPosition, 1f);
                     player.DOMove(nextPlayerPosition, 1f).OnComplete(() => { EndTeleportSelection(); });
 
-
+                    
                 }
 
                 //    EndTeleportSelection();
@@ -268,6 +276,7 @@ namespace DaydreamElements.Teleport
             detector.StartSelection(currentController);
             visualizer.StartSelection(currentController);
             selectionIsActive = true;
+          
         }
 
         private void EndTeleportSelection()
@@ -275,6 +284,7 @@ namespace DaydreamElements.Teleport
             detector.EndSelection();
             visualizer.EndSelection();
             selectionIsActive = false;
+           
             //reset player state
 
             Player.instance.SetState(Player.PlayerState.None);
@@ -334,6 +344,7 @@ namespace DaydreamElements.Teleport
             // Continue a rotation animation each frame.
             if (isRotating)
             {
+
                 player.rotation = Quaternion.Lerp(player.rotation,
                   finalRotation, rotationSpeed * Time.deltaTime);
                 //rotate avatar
