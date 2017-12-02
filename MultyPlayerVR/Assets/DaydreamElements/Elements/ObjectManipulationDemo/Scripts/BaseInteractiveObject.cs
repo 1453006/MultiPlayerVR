@@ -21,11 +21,11 @@ namespace DaydreamElements.ObjectManipulation
 
     /// Used for responding to pointer events, and implementing a movable object.
     public abstract class BaseInteractiveObject : Photon.MonoBehaviour,
-    IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler
+    IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
     {
 
         public enum MotionMode { Transform, Rigidbody }
-        public enum ObjectState { None, Selected, Released}
+        public enum ObjectState { None, Selected, Released }
         public enum Axis { X, Y, Z }
 
         /// This controls whether the Gvr pointer is automatically
@@ -52,12 +52,12 @@ namespace DaydreamElements.ObjectManipulation
         protected const float NORMALIZATION_EPSILON = 0.00001f;
 
         //datld: Photon
- #region PUN
+        #region PUN
         public bool PickupIsMine;
         public bool SentPickup;
-        public int currentOwnerID = -1;   
-      
-     
+        public int currentOwnerID = -1;
+
+
         [PunRPC]
         public void PunPickup(PhotonMessageInfo msgInfo)
         {
@@ -67,8 +67,8 @@ namespace DaydreamElements.ObjectManipulation
 
             this.PickupIsMine = msgInfo.sender.IsLocal;
 
-           
-            if (this.PickupIsMine )
+
+            if (this.PickupIsMine)
             {
                 //picked up this object
                 photonView.TransferOwnership(PhotonNetwork.player.ID);
@@ -76,7 +76,7 @@ namespace DaydreamElements.ObjectManipulation
                 //Select();
             }
 
-            
+
         }
 
         [PunRPC]
@@ -180,7 +180,7 @@ namespace DaydreamElements.ObjectManipulation
 
         void OnEnable()
         {
-            currentOwnerID = -1;
+            
             Reset();
         }
 
@@ -214,40 +214,22 @@ namespace DaydreamElements.ObjectManipulation
         {
             /// if main player is not ready then return 
             if (Player.instance.currentState != Player.PlayerState.Selecting)
-                return; 
+                return;
 
             // If the state is ready for selection, select the object.
             if (state == ObjectState.None)
             {
                 if (currentOwnerID != -1)
                     return;
-
-                //if (this.SentPickup)
-                //{
-                //    // skip sending more pickups until the original pickup-RPC got back to this client
-                //    return;
-                //}
-                //this.SentPickup = true;
-                ////someone picked it, then wait
-               
-
-                //this.photonView.RPC("PunPickup", PhotonTargets.AllViaServer);
-                //if (currentOwnerID == PhotonNetwork.player.ID)
-                    Select();
+                Select();
                 // Otherwise, try to deselect it.
             }
             else if (state == ObjectState.Selected)
             {
                 if (currentOwnerID != -1)
                     return;
+                Deselect();
 
-                //if (this.PickupIsMine)
-                //{
-
-                    //this.photonView.RPC("PunDrop", PhotonTargets.AllViaServer);
-                    //if (currentOwnerID == PhotonNetwork.player.ID) 
-                        Deselect();
-                //}
             }
         }
 
@@ -258,7 +240,7 @@ namespace DaydreamElements.ObjectManipulation
 
         public void OnPointerEnter(PointerEventData data)
         {
-            
+
             if (Player.instance.currentState != Player.PlayerState.None)
                 return;
             Hover = true;
@@ -274,6 +256,10 @@ namespace DaydreamElements.ObjectManipulation
         protected virtual void OnSelect()
         {
             Player.instance.currentState = Player.PlayerState.Selecting;
+
+            photonView.TransferOwnership(PhotonNetwork.player.ID);
+            currentOwnerID = PhotonNetwork.player.ID;
+
             totalTouchpadMotionSinceSelection = Vector2.zero;
             initialControllerOrientation = controlTransform.rotation;
 
@@ -287,10 +273,13 @@ namespace DaydreamElements.ObjectManipulation
 
         protected virtual void OnDeselect()
         {
-           
+
             state = ObjectState.Released;
             lastStateChangeFrame = Time.frameCount;
-            
+
+            currentOwnerID = -1;
+
+
         }
 
         protected virtual void OnDrag()
@@ -305,7 +294,7 @@ namespace DaydreamElements.ObjectManipulation
         {
         }
 
-       
+
 
         protected virtual void OnReset()
         {
@@ -314,8 +303,8 @@ namespace DaydreamElements.ObjectManipulation
         // Try to select this object.
         private void Select()
         {
-           
-            
+
+
             if (ObjectManipulationPointer.IsObjectSelected())
             {
                 return;
@@ -339,22 +328,21 @@ namespace DaydreamElements.ObjectManipulation
             {
                 return;
             }
-            photonView.TransferOwnership(PhotonNetwork.player.ID);
-            currentOwnerID = PhotonNetwork.player.ID;
+
             OnSelect();
         }
 
         // If there is a selected object, deselect it.
         protected void Deselect()
         {
-          
+
             // Only deselect the object if it's selected, and we didn't select it this frame.
             if (state != ObjectState.Selected || lastStateChangeFrame == Time.frameCount)
             {
                 return;
             }
 
-            currentOwnerID = -1;
+
             OnDeselect();
         }
 
@@ -363,6 +351,7 @@ namespace DaydreamElements.ObjectManipulation
         {
             state = ObjectState.None;
             lastStateChangeFrame = -1;
+            currentOwnerID = -1;
             OnReset();
         }
 

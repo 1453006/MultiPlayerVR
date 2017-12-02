@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+#region CONFIG
+    public float playerHeight = 1.8f;
+#endregion
     public GameObject defaultLaser;
     public GameObject visualPlayer;
     public DaydreamElements.Teleport.TeleportController teleportController;
     public static Player instance;
-
 
     public enum PlayerState
     {

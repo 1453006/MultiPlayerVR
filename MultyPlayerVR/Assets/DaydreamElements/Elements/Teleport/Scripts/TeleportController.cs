@@ -217,7 +217,8 @@ namespace DaydreamElements.Teleport
             }
 
             // Get the current selection result from the detector.
-            float playerHeight = DetectPlayerHeight();
+            // float playerHeight = DetectPlayerHeight();
+            float playerHeight = Player.instance.playerHeight;
             selectionResult = detector.DetectSelection(currentController, playerHeight);
 
             // Update the visualization.

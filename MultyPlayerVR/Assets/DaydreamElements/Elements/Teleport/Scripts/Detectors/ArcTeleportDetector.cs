@@ -105,6 +105,7 @@ namespace DaydreamElements.Teleport {
       // First, raycast forward from the controller up to max raycast distance.
       if (Physics.Raycast(ray.origin, ray.direction,
                           out hit, maxDistance, raycastMask)) {
+        
         // If there is a forward hit, move on to the next check.
         result.selection = hit.point;
         result.selectionNormal = hit.normal;
