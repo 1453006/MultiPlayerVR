@@ -8,12 +8,41 @@ public class NetworkPlayer : Photon.MonoBehaviour {
     Transform controllerTransform;
     public Transform visualHead;
     public Transform visualHandTransform;
+    public Transform visualLowerJaw;
     public float range = 100f;
     public float health;
-	// Use this for initialization
-	void Start () {
+
+    private Vector3 lowerJawInitPos;
+    
+
+#region Voice Regconition
+    public AudioSource audioSource;
+    public int numSample = 1024;
+    public float[] samples;
+
+    float GetAveragedVolume()
+    {
+        float result = 0f;
+        if(audioSource.isPlaying)
+        {
+            for(int chanel = 0;chanel < 2;chanel++)
+            {
+                audioSource.GetOutputData(samples, chanel);
+                for(int i = 0; i< numSample;i++)
+                {
+                    result += Mathf.Abs(samples[i]);
+                }
+            }
+        }
+        return result / numSample;
+    }
+
+    #endregion
+
+    // Use this for initialization
+    void Start () {
         playerGO = GameObject.Find("Player");
-        
+        lowerJawInitPos = visualLowerJaw.transform.localPosition;
         health = 100f;
         foreach (Transform child in playerGO.transform)
         {
@@ -25,6 +54,10 @@ public class NetworkPlayer : Photon.MonoBehaviour {
             {
                 controllerTransform = child.GetChild(0); // is controller 
             }
+
+            
+
+
         }
 
         //enable voice recorder only if it is mine;
@@ -36,13 +69,31 @@ public class NetworkPlayer : Photon.MonoBehaviour {
             //if (playerGO)
             //    transform.SetParent(playerGO.transform);
             //transform.localPosition = Vector3.zero;
+
+
+            //samples = new float[numSample];
+            //audioSource = transform.GetComponent< AudioSource > ();
+            //audioSource.clip = Microphone.Start("Built-in Microphone", true, 10, 44100);
+            //while (!(Microphone.GetPosition(null) > 0)) { }
+            //audioSource.Play();
+
         }
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+      
+       
+        //if(!photonView.isMine)
+        //{
+        //    float volume = GetAveragedVolume();
+        //    visualLowerJaw.position = lowerJawInitPos - transform.up * volume;
+        //}
         if (photonView.isMine)
         {
+            visualLowerJaw.localPosition = new Vector3(lowerJawInitPos.x, lowerJawInitPos.y - MicInput.instance.MicLoudness/20f, lowerJawInitPos.z);
             GvrBasePointer laserPointerImpl = (GvrBasePointer)GvrPointerInputModule.Pointer;
 
             if (GvrControllerInput.TouchDown)

@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        transform.position = GamePlay.instance.spawnPoint;
 	}
 
     public void SetState(PlayerState state)
@@ -71,6 +71,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        //test voice
        
         UpdateState();
 
