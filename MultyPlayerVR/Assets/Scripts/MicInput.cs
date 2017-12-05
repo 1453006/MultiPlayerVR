@@ -11,6 +11,8 @@ public class MicInput : MonoBehaviour
 
     static public MicInput instance;
 
+    private bool isHasMicroPhone = false;
+
     public void Awake()
     {
         instance = this;
@@ -19,7 +21,15 @@ public class MicInput : MonoBehaviour
     //mic initialization
     void InitMic()
     {
+        if (Microphone.devices.Length == 0)
+        {
+            isHasMicroPhone = false;
+            return;
+        }
+        
+
         if (_device == null) _device = Microphone.devices[0];
+        isHasMicroPhone = true;
         _clipRecord = Microphone.Start(_device, true, 999, 44100);
     }
 
@@ -56,6 +66,8 @@ public class MicInput : MonoBehaviour
 
     void Update()
     {
+        if (!isHasMicroPhone)
+            return;
         // levelMax equals to the highest normalized value power 2, a small number because < 1
         // pass the value to a static var so we can access it from anywhere
         MicLoudness = LevelMax();
