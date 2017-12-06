@@ -63,4 +63,5 @@ MonoBehaviour:
   - TurnOffGravity
   - TurnOnGravity
   - TeleportToValidSlot
+  - SetPlayerPosition
   DisableAutoOpenWizard: 1

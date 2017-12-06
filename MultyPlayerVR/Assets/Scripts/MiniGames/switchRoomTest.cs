@@ -19,7 +19,7 @@ public class switchRoomTest : Photon.MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData data)
     {
-        PhotonNetwork.SetMasterClient(PhotonNetwork.masterClient.GetNext());
+        
         PhotonNetwork.DestroyPlayerObjects(PhotonNetwork.player);
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.Disconnect();

@@ -109,5 +109,10 @@ public class Player : MonoBehaviour {
        
         UpdateState();
 
+        if (visualPlayer)
+        {
+            visualPlayer.transform.position = this.transform.position;
+            visualPlayer.transform.rotation = this.transform.rotation;
+        }
     }
 }
