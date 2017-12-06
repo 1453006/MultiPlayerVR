@@ -607,6 +607,10 @@
     <Compile Include="Assets\Scripts\ArcRender.cs" />
     <Compile Include="Assets\Scripts\GamePlay.cs" />
     <Compile Include="Assets\Scripts\InteractiveObject.cs" />
+    <Compile Include="Assets\Scripts\MicInput.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\BaseInteractiveGame.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\NetManagerRoomTest.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\switchRoomTest.cs" />
     <Compile Include="Assets\Scripts\NetManager.cs" />
     <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />

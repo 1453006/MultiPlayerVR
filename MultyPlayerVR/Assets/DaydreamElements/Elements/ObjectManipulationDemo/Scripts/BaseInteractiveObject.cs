@@ -235,7 +235,7 @@ namespace DaydreamElements.ObjectManipulation
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            Player.instance.SetState(Player.PlayerState.None);
+            //Player.instance.SetState(Player.PlayerState.None);
         }
 
         public void OnPointerEnter(PointerEventData data)
@@ -243,12 +243,15 @@ namespace DaydreamElements.ObjectManipulation
 
             if (Player.instance.currentState != Player.PlayerState.None)
                 return;
+
             Hover = true;
             Player.instance.currentState = Player.PlayerState.Selecting;
         }
 
         public void OnPointerExit(PointerEventData data)
         {
+            if (Player.instance.currentState != Player.PlayerState.Selecting)
+                return;
             Hover = false;
             Player.instance.SetState(Player.PlayerState.None);
         }

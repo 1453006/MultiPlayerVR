@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b02a763c27cdb44a2a2afae43fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHeight: 1.8
   defaultLaser: {fileID: 1989007552409096}
   visualPlayer: {fileID: 0}
   teleportController: {fileID: 114702333321225080}
@@ -675,7 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validTeleportLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   raycastMask:
     serializedVersion: 2
     m_Bits: 1

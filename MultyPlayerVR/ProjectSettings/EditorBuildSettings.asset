@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/main.unity
     guid: a7d4480dced083743854c615c0f2833a
+  - enabled: 1
+    path: Assets/Scenes/room_test.unity
+    guid: 8ace4d0d2df70bc44a8cac2945e7b3da
   - enabled: 0
     path: Assets/Photon Unity Networking/Demos/DemoChangeOwner/DemoChangeOwner-Scene.unity
     guid: efb7b18562339d8459d546ede0a9e4cc
+  - enabled: 0
+    path: Assets/Photon Unity Networking/Demos/DemoRockPaperScissors/DemoRPS-Scene.unity
+    guid: 8a3480dd507edcd40b9a02e219e22da6

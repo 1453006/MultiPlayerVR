@@ -209,8 +209,7 @@ namespace DaydreamElements.Teleport
                 if (teleportStartTrigger.TriggerActive())
                 {
                     //if player is not ready for teleport then return
-                    if (Player.instance.currentState != Player.PlayerState.None
-                      )
+                    if (Player.instance.currentState != Player.PlayerState.None)
                         return;
                     StartTeleportSelection();
                 }

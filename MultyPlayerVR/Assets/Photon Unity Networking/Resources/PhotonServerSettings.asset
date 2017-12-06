@@ -62,4 +62,5 @@ MonoBehaviour:
   - TakeDamge
   - TurnOffGravity
   - TurnOnGravity
+  - TeleportToValidSlot
   DisableAutoOpenWizard: 1

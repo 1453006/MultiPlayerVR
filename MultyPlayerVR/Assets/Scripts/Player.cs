@@ -1,12 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour {
 
 #region CONFIG
     public float playerHeight = 1.8f;
+    #endregion
+
+#region Player Util
+    public void MoveTo(Vector3 pos,Quaternion rot)
+    {
+        Vector3 correctPos = new Vector3(pos.x, pos.y + playerHeight, pos.z);
+        this.transform.DOMove(correctPos, 1f);
+        this.transform.rotation = rot;
+        if (visualPlayer)
+        {
+            visualPlayer.transform.DOMove(correctPos, 1f);
+            visualPlayer.transform.rotation = rot;
+        }
+
+    }
 #endregion
+
+
     public GameObject defaultLaser;
     public GameObject visualPlayer;
     public DaydreamElements.Teleport.TeleportController teleportController;
@@ -14,7 +32,10 @@ public class Player : MonoBehaviour {
 
     public enum PlayerState
     {
-        None, Teleporting,Selecting
+        None,
+        Teleporting,
+        Selecting,
+        PlayingGame
     };
 
     private void Awake()
@@ -30,12 +51,12 @@ public class Player : MonoBehaviour {
 	}
 
     public void SetState(PlayerState state)
-    {
-        currentState = state;
-        defaultLaser.SetActive(true);
+    { 
+       
         if (state == PlayerState.None)
         {
             Invoke("enableTeleport", 1f);
+            defaultLaser.SetActive(true);
         }
         else if (state == PlayerState.Teleporting)
         {
@@ -45,6 +66,14 @@ public class Player : MonoBehaviour {
         {
             teleportController.gameObject.SetActive(false);
         }
+        else if (state == PlayerState.PlayingGame)
+        {
+            teleportController.gameObject.SetActive(false);
+            defaultLaser.SetActive(true);
+        }
+
+     
+        currentState = state;
 
     }
 
@@ -59,10 +88,15 @@ public class Player : MonoBehaviour {
         {
 
         }
-        else if (currentState == PlayerState.Teleporting)
+        else if (currentState == PlayerState.Selecting)
         {
-           
+            teleportController.gameObject.SetActive(false);
         }
+        else if (currentState == PlayerState.PlayingGame)
+        {
+            teleportController.gameObject.SetActive(false);
+        }
+
     }
 
     

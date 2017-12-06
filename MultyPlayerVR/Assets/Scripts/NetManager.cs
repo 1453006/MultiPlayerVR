@@ -51,14 +51,5 @@ public class NetManager : MonoBehaviour {
         Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room. From here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
         PhotonNetwork.Instantiate(avatarPrefabs.name, GamePlay.instance.spawnPoint, Quaternion.identity, 0);
-        if (PhotonNetwork.isMasterClient)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                Vector3 pos = new Vector3(Random.Range(0,1f), 0.2f, Random.Range(0, 1f));
-                PhotonNetwork.Instantiate(interactiveObjectPrefabs.name, pos, Quaternion.identity, 0);
-            }
-        }
-     
     }
 }

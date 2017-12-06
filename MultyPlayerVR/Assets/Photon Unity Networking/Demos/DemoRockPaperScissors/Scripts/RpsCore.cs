@@ -130,7 +130,9 @@ public class RpsCore : PunBehaviour, IPunTurnManagerCallbacks
             PhotonHandler.StopFallbackSendAckThread();
         }
 
-	
+       
+
+
         if ( ! PhotonNetwork.inRoom)
         {
 			return;
@@ -328,7 +330,8 @@ public class RpsCore : PunBehaviour, IPunTurnManagerCallbacks
 
     public IEnumerator ShowResultsBeginNextTurnCoroutine()
     {
-		ButtonCanvasGroup.interactable = false;
+        //datld changed false -> true
+		ButtonCanvasGroup.interactable = true;
 		IsShowingResults = true;
        // yield return new WaitForSeconds(1.5f);
 
@@ -344,7 +347,8 @@ public class RpsCore : PunBehaviour, IPunTurnManagerCallbacks
 
         yield return new WaitForSeconds(2.0f);
 
-        this.StartTurn();
+        //DATLD
+        //this.StartTurn();
     }
 
 
@@ -444,6 +448,10 @@ public class RpsCore : PunBehaviour, IPunTurnManagerCallbacks
 
     #region Handling Of Buttons
 
+    public void OnClickReady()
+    {
+            this.StartTurn();
+    }
     public void OnClickRock()
     {
         this.MakeTurn(Hand.Rock);
