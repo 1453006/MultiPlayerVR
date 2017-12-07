@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
 
@@ -11,6 +12,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         instance = this;
     }
 
+
+
     #region common
     public enum Trigger
     {      
@@ -18,6 +21,11 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         EXIT,
         CLICK,
         TOUCH,
+        START,
+        BEGINDRAG,
+        DRAGGING,
+        ENDDRAG,
+        DROP,
         NONE,
     }
 
@@ -27,7 +35,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         PLAYSOUND,
         STOPSOUND,
         PAUSESOUND,
-        RESUMESOUND,
+        RESUMESOUND, 
         NONE
     }
       
@@ -45,23 +53,23 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         if (name == "pauseSound") return Action.PAUSESOUND;
         if (name == "resumeSound") return Action.RESUMESOUND;
         if (name == "stopSound") return Action.STOPSOUND;
-        return Action.NONE;
+        return Action.NONE;]
     }
 
     [System.Serializable]
     public struct SceneObjectEvent
     {
-        public Trigger triggerHover, triggerExit, triggerClick;
-        public Action actionHover, actionExit, actionClick;
-        public string paramHover, paramExit, paramClick;
+        public Trigger trigger1, trigger2, trigger3;
+        public Action action1, action2, action3;
+        public string param1, param2, param3;
 
         public SceneObjectEvent(Trigger trigger1, Action action1, string param1,
                                 Trigger trigger2, Action action2, string param2,
                                 Trigger trigger3, Action action3, string param3)
         {
-            this.triggerHover = trigger1; this.triggerExit = trigger2; this.triggerClick = trigger3;
-            this.actionHover = action1; this.actionExit = action2; this.actionClick = action3;
-            this.paramHover = param1; this.paramExit = param2; this.paramClick = param3;
+            this.trigger1 = trigger1; this.trigger2 = trigger2; this.trigger3 = trigger3;
+            this.action1 = action1; this.action2 = action2; this.action3 = action3;
+            this.param1 = param1; this.param2 = param2; this.param3 = param3;
         }
     }
 
@@ -71,15 +79,15 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
                          int action1, int action2, int action3,
                          string param1,string param2, string param3)
     {
-        sceneObjectEvent.triggerHover =(Trigger)trigger1;
-        sceneObjectEvent.triggerExit = (Trigger)trigger2;
-        sceneObjectEvent.triggerClick = (Trigger)trigger3;
-        sceneObjectEvent.actionHover = (Action)action1;
-        sceneObjectEvent.actionExit = (Action)action2; ;
-        sceneObjectEvent.actionClick = (Action)action3;
-        sceneObjectEvent.paramHover = param1;
-        sceneObjectEvent.paramExit = param2;
-        sceneObjectEvent.paramClick = param3;
+        sceneObjectEvent.trigger1 =(Trigger)trigger1;
+        sceneObjectEvent.trigger2 = (Trigger)trigger2;
+        sceneObjectEvent.trigger3 = (Trigger)trigger3;
+        sceneObjectEvent.action1 = (Action)action1;
+        sceneObjectEvent.action2 = (Action)action2; ;
+        sceneObjectEvent.action3 = (Action)action3;
+        sceneObjectEvent.param1 = param1;
+        sceneObjectEvent.param2 = param2;
+        sceneObjectEvent.param3 = param3;
     }
     #endregion
 
@@ -87,53 +95,94 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     public void OnPointerEnter(PointerEventData eventData)
     {    
         
-        if (sceneObjectEvent.triggerHover == Trigger.HOVER)
+        if (sceneObjectEvent.trigger1 == Trigger.HOVER)
         {
-            if (sceneObjectEvent.actionHover == Action.RUNSCRIPT)            
-                FBScriptManager.instance.runScript(sceneObjectEvent.paramHover);
-            if (sceneObjectEvent.actionHover == Action.PLAYSOUND)
-                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.paramHover);
-            if (sceneObjectEvent.actionHover == Action.PAUSESOUND)
-                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.actionHover == Action.RESUMESOUND)
-                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.actionHover == Action.STOPSOUND)
-                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param1);
+            if (sceneObjectEvent.action1 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param1);
+            if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+        }
+        if (sceneObjectEvent.trigger2 == Trigger.HOVER)
+        {
+            if (sceneObjectEvent.action2 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param2);
+            if (sceneObjectEvent.action2 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param2);
+            if (sceneObjectEvent.action2 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+        }
+        if (sceneObjectEvent.trigger3 == Trigger.HOVER)
+        {
+            if (sceneObjectEvent.action3 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param3);
+            if (sceneObjectEvent.action3 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param3);
+            if (sceneObjectEvent.action3 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
         }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (sceneObjectEvent.triggerExit == Trigger.EXIT)
+        if (sceneObjectEvent.trigger1 == Trigger.EXIT)
         {
-            if (sceneObjectEvent.actionExit == Action.RUNSCRIPT)            
-                FBScriptManager.instance.runScript(sceneObjectEvent.paramExit);            
-            if (sceneObjectEvent.actionExit == Action.PLAYSOUND)
-                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.paramHover);
-            if (sceneObjectEvent.actionExit == Action.PAUSESOUND)
-                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.actionExit == Action.RESUMESOUND)
-                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.actionExit == Action.STOPSOUND)
-                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param1);            
+            if (sceneObjectEvent.action1 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param1);
+            if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+        }
+        if (sceneObjectEvent.trigger2 == Trigger.EXIT)
+        {
+            if (sceneObjectEvent.action2 == Action.RUNSCRIPT) FBScriptManager.instance.runScript(sceneObjectEvent.param2);
+            if (sceneObjectEvent.action2 == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param2);
+            if (sceneObjectEvent.action2 == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+        }
+        if (sceneObjectEvent.trigger3 == Trigger.EXIT)
+        {
+            if (sceneObjectEvent.action3 == Action.RUNSCRIPT) FBScriptManager.instance.runScript(sceneObjectEvent.param3);
+            if (sceneObjectEvent.action3 == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param3);
+            if (sceneObjectEvent.action3 == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(sceneObjectEvent.triggerClick == Trigger.CLICK)
+        if(sceneObjectEvent.trigger1 == Trigger.CLICK)
         {
-            if(sceneObjectEvent.actionClick == Action.RUNSCRIPT)            
-                FBScriptManager.instance.runScript(sceneObjectEvent.paramClick);
-            if (sceneObjectEvent.actionClick == Action.PLAYSOUND)
-                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.paramHover);
-            if (sceneObjectEvent.actionClick == Action.PAUSESOUND)
-                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.actionClick == Action.RESUMESOUND)
-                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.actionClick == Action.STOPSOUND)
-                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if(sceneObjectEvent.action1 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param1);
+            if (sceneObjectEvent.action1 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param1);
+            if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
 
         }
+        if (sceneObjectEvent.trigger2 == Trigger.CLICK)
+        {
+            if (sceneObjectEvent.action2 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param2);
+            if (sceneObjectEvent.action2 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param2);
+            if (sceneObjectEvent.action2 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+
+        }
+        if (sceneObjectEvent.trigger3 == Trigger.CLICK)
+        {
+            if (sceneObjectEvent.action3 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param3);
+            if (sceneObjectEvent.action3 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param3);
+            if (sceneObjectEvent.action3 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+
+        }
+    }
+    
+    //Begin Drag
+    void beginDrag()
+    {
+        
     }
    
     #endregion

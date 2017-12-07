@@ -178,7 +178,7 @@ private void OnCollisionEnter(Collision collision)
     void OnCollisionEnterBall(Collision other)
     {
         Debug.Log("OnCollisionEnterBall With : " + other.gameObject.name);
-        Vector3 forceVector = other.contacts[0].normal * 3f;
+        Vector3 forceVector = other.contacts[0].normal * 1.5f;
         rigidBody.AddForce(forceVector, ForceMode.Impulse);
 
     }

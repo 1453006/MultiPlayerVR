@@ -69,7 +69,7 @@ public class SceneObjectManager : MonoBehaviour {
                                               interactiveObjects[i].getFieldValue("Action1").intValue, interactiveObjects[i].getFieldValue("Action2").intValue, interactiveObjects[i].getFieldValue("Action3").intValue,
                                               interactiveObjects[i].getFieldValue("Param1").stringValue, interactiveObjects[i].getFieldValue("Param2").stringValue, interactiveObjects[i].getFieldValue("Param3").stringValue);
               
-
+                
             }
         }
     }
