@@ -208,6 +208,12 @@
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PhotonPlayer\Editor\PlayerRoomIndexingInspector.cs" />
     <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PhotonPlayer\Editor\PunTeamsInspector.cs" />
     <Compile Include="Assets\PUNVoice\DemoVoice\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioListenerEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioReverbBakingWindow.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioReverbComputer.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioReverbProbeEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioRoomEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioSourceEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Example\ESMReceiverTemplate.shader" />
@@ -415,6 +421,9 @@
     <None Include="Assets\Prefabs\Teleport\Shaders\BezierArcLaserTextured.shader" />
     <None Include="Assets\Prefabs\Teleport\Shaders\LaserSpark.shader" />
     <None Include="Assets\Prefabs\Teleport\Shaders\TeleportGlow.shader" />
+    <None Include="Assets\ResonanceAudio\Demos\Environment\ResonanceAudioDemo\CubeRoomUnlitGrayscale.shader" />
+    <None Include="Assets\ResonanceAudio\Shaders\ResonanceAudioSurfaceMaterial.shader" />
+    <None Include="Assets\Resources\Data\Resources\New Text Document.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

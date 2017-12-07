@@ -8,6 +8,7 @@ public class GameCore : PunBehaviour
 
     // note that master position always 0, others are remote position
     public Transform[] playerPos;
+    public State currentState;
 
     public enum State
     {
@@ -46,12 +47,13 @@ public class GameCore : PunBehaviour
                     break;
                 }
         }
+        currentState = state;
     }
-    void OnStartGame()
+
+    public virtual void OnStartGame()
     {
         //set player Position to be correct
         this.photonView.RPC("SetPlayerPosition", PhotonTargets.AllViaServer);
-
     }
 
     
@@ -63,7 +65,7 @@ public class GameCore : PunBehaviour
 
     public override void OnJoinedRoom()
     {
-        if (PhotonNetwork.room.PlayerCount == 1)
+        if (PhotonNetwork.room.PlayerCount == 2)
         {
             Debug.Log("OnJoinedRoom: Player Count == 2");
             SetState(State.Start);
@@ -78,7 +80,7 @@ public class GameCore : PunBehaviour
     {
         Debug.Log("Other player arrived");
 
-        if (PhotonNetwork.room.PlayerCount == 1)
+        if (PhotonNetwork.room.PlayerCount == 2)
         {
             Debug.Log("OnPhotonPlayerConnected: Player Count == 2");
             SetState(State.Start);
