@@ -13,21 +13,22 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
     #region common
     public enum Trigger
-    {
-        NONE = 0,
-        HOVER,
+    {      
+        HOVER = 1,
         EXIT,
         CLICK,
+        TOUCH,
+        NONE,
     }
 
     public enum Action
-    {
-        NONE = 0,
-        RUNSCRIPT,
+    {        
+        RUNSCRIPT = 1,
         PLAYSOUND,
         STOPSOUND,
         PAUSESOUND,
         RESUMESOUND,
+        NONE
     }
       
    public Trigger triggerTypeToID(string name)
@@ -65,11 +66,27 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     }
 
     public SceneObjectEvent sceneObjectEvent;
+
+    public void addEvent(int trigger1, int trigger2, int trigger3,
+                         int action1, int action2, int action3,
+                         string param1,string param2, string param3)
+    {
+        sceneObjectEvent.triggerHover =(Trigger)trigger1;
+        sceneObjectEvent.triggerExit = (Trigger)trigger2;
+        sceneObjectEvent.triggerClick = (Trigger)trigger3;
+        sceneObjectEvent.actionHover = (Action)action1;
+        sceneObjectEvent.actionExit = (Action)action2; ;
+        sceneObjectEvent.actionClick = (Action)action3;
+        sceneObjectEvent.paramHover = param1;
+        sceneObjectEvent.paramExit = param2;
+        sceneObjectEvent.paramClick = param3;
+    }
     #endregion
 
     #region elements
     public void OnPointerEnter(PointerEventData eventData)
-    {       
+    {    
+        
         if (sceneObjectEvent.triggerHover == Trigger.HOVER)
         {
             if (sceneObjectEvent.actionHover == Action.RUNSCRIPT)            

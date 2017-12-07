@@ -57,21 +57,18 @@ public class SceneObjectManager : MonoBehaviour {
                 if (interactiveObject)
                 {
                     scnObj = interactiveObject.addMissingComponent<SceneObject>();
+                    //if (scnObj.GetComponent<BoxCollider>())
+                    //    scnObj.gameObject.AddComponent<BoxCollider>();
                     objectDict[objectName] = scnObj;
                 }
             }
             if (scnObj)
             {
                 // set trigger and action
-                scnObj.sceneObjectEvent.triggerHover = scnObj.triggerTypeToID(interactiveObjects[i].getFieldValue("TriggerHover").stringValue);
-                scnObj.sceneObjectEvent.triggerExit = scnObj.triggerTypeToID(interactiveObjects[i].getFieldValue("TriggerExit").stringValue);
-                scnObj.sceneObjectEvent.triggerClick = scnObj.triggerTypeToID(interactiveObjects[i].getFieldValue("TriggerClick").stringValue);
-                scnObj.sceneObjectEvent.actionHover = scnObj.actionTypeToID(interactiveObjects[i].getFieldValue("ActionHover").stringValue);
-                scnObj.sceneObjectEvent.actionExit = scnObj.actionTypeToID(interactiveObjects[i].getFieldValue("ActionExit").stringValue);
-                scnObj.sceneObjectEvent.actionClick = scnObj.actionTypeToID(interactiveObjects[i].getFieldValue("ActionClick").stringValue);
-                scnObj.sceneObjectEvent.paramHover = interactiveObjects[i].getFieldValue("ParamHover").stringValue;
-                scnObj.sceneObjectEvent.paramExit = interactiveObjects[i].getFieldValue("ParamExit").stringValue;
-                scnObj.sceneObjectEvent.paramClick = interactiveObjects[i].getFieldValue("ParamClick").stringValue;
+                SceneObject.instance.addEvent(interactiveObjects[i].getFieldValue("Trigger1").intValue, interactiveObjects[i].getFieldValue("Trigger2").intValue, interactiveObjects[i].getFieldValue("Trigger3").intValue,
+                                              interactiveObjects[i].getFieldValue("Action1").intValue, interactiveObjects[i].getFieldValue("Action2").intValue, interactiveObjects[i].getFieldValue("Action3").intValue,
+                                              interactiveObjects[i].getFieldValue("Param1").stringValue, interactiveObjects[i].getFieldValue("Param2").stringValue, interactiveObjects[i].getFieldValue("Param3").stringValue);
+              
 
             }
         }

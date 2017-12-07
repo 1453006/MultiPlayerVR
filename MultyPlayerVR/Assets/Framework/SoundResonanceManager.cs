@@ -58,12 +58,7 @@ public class SoundResonanceManager : MonoBehaviour {
     }
     public void stopAllSoundOnObj(GameObject obj)
     {
-        if(obj.GetComponent<ResonanceAudioSource>())
-        {
-            obj.removeComponents<ResonanceAudioSource>();
-            obj.removeComponents<AudioSource>();
-        }
-
+ 
         if (obj.GetComponent<AudioSource>().isPlaying)
             obj.GetComponent<AudioSource>().Stop();
     }

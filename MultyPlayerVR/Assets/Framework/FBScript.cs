@@ -381,11 +381,6 @@ public class FBScript : MonoBehaviour
         nextCmd = true;
     }
 
-    void onButtonEvent()
-    {
-        LobbyManager.instance.onButtonEvent(cmdData[1].stringValue);
-        nextCmd = true;
-    }
     void test()
     {
         Debug.Log(cmdData[1].stringValue);
