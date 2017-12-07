@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "UITrigger",
+    "ignore": false,
+    "data": [
+      {
+        "fieldName": "Name",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "UIAction",
+    "ignore": false,
+    "data": [
+      {
+        "fieldName": "Name",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "UIObject",
+    "ignore": false,
+    "data": [
+      {
+        "fieldName": "SceneName",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "ObjectName",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Trigger1",
+        "dataType": 1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Action1",
+        "dataType": 2,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Param1",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Trigger2",
+        "dataType": 1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Action2",
+        "dataType": 2,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Param2",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Trigger3",
+        "dataType": 1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Action3",
+        "dataType": 2,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Param3",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      }
+    ]
+  }
+]

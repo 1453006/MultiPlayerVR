@@ -1,0 +1,34 @@
+{
+  "id": 3,
+  "name": "UIObject",
+  "data": [
+    {
+      "id": 1,
+      "ObjectName": "Door_Left_01",
+      "SceneName": "main",
+      "Trigger1": 1,
+      "Action1": 2,
+      "Param1": "door-knock",
+      "Trigger2": 5,
+      "Action2": 6,
+      "Param2": "None",
+      "Trigger3": 5,
+      "Action3": 6,
+      "Param3": "None"
+    },
+    {
+      "id": 2,
+      "ObjectName": "WaterMelon",
+      "SceneName": "main",
+      "Trigger1": 1,
+      "Action1": 2,
+      "Param1": "Barking-noise",
+      "Trigger2": 2,
+      "Action2": 3,
+      "Param2": "Barking-noise",
+      "Trigger3": 5,
+      "Action3": 6,
+      "Param3": "None"
+    }
+  ]
+}

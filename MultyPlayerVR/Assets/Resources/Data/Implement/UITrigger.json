@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "name": "UITrigger",
+  "data": [
+    {
+      "id": 1,
+      "Name": "Hover"
+    },
+    {
+      "id": 2,
+      "Name": "Exit"
+    },
+    {
+      "id": 3,
+      "Name": "Click"
+    },
+    {
+      "id": 4,
+      "Name": "Touch"
+    },
+    {
+      "id": 5,
+      "Name": "None"
+    }
+  ]
+}

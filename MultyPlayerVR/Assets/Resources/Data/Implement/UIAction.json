@@ -1,0 +1,30 @@
+{
+  "id": 2,
+  "name": "UIAction",
+  "data": [
+    {
+      "id": 1,
+      "Name": "runScript"
+    },
+    {
+      "id": 2,
+      "Name": "playSound"
+    },
+    {
+      "id": 3,
+      "Name": "stopSound"
+    },
+    {
+      "id": 4,
+      "Name": "pauseSound"
+    },
+    {
+      "id": 5,
+      "Name": "resumeSound"
+    },
+    {
+      "id": 6,
+      "Name": "None"
+    }
+  ]
+}
