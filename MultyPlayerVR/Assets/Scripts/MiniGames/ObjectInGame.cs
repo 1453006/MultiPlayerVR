@@ -5,15 +5,28 @@ using DG.Tweening;
 
 public class ObjectInGame : Photon.MonoBehaviour {
 
+    public GameObject fakePhysicObject;
+
     Rigidbody rigidBody;
     ObjectInGame instance;
+
     private Vector3 correctPos;
+    private Quaternion correctRot;
+
+    private MeshRenderer meshRenderer;
+
+    private Vector3 lastPos;
+
+    private Vector3 direct;
+    private Vector3 correctDirect;
+
 
     public enum TYPE
     {
         Striker,
         Ball
     };
+
     public ObjectInGame.TYPE type;
 
 
@@ -21,47 +34,88 @@ public class ObjectInGame : Photon.MonoBehaviour {
     {
         instance = this;
         correctPos = this.transform.position;
+        correctRot = this.transform.rotation;
     }
     // Use this for initialization
-    void Start () {
+    void Start() {
+
         InitObject();
         rigidBody = this.GetComponent<Rigidbody>();
+        meshRenderer = this.GetComponent<MeshRenderer>();
 
+        direct = new Vector3(1, 0, 0);
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
         UpdateObject();
-	}
+    }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
-            // We own this player: send the others our data
-            stream.SendNext(transform.position);   
-
+            OnStreamWrite(stream, info);
         }
         else
-        {
-            // Network player, receive data
-            this.correctPos = (Vector3)stream.ReceiveNext();     
+        { 
+            OnStreamReceive(stream, info);
         }
     }
 
-
-private void OnCollisionEnter(Collision collision)
+    void OnStreamWrite(PhotonStream stream, PhotonMessageInfo info)
     {
         switch (type)
         {
             case TYPE.Striker:
                 {
-                   
+                    // We own this player: send the others our data
+                    stream.SendNext(transform.position);
                     break;
                 }
             case TYPE.Ball:
                 {
-                    OnCollisionEnterBall(collision);
+                    // We own this player: send the others our data
+                    stream.SendNext(transform.position);
+                    stream.SendNext(transform.rotation);
+                    break;
+                }
+        }
+    }
+
+    void OnStreamReceive(PhotonStream stream, PhotonMessageInfo info)
+    {
+        switch (type)
+        {
+            case TYPE.Striker:
+                {
+                    // Network player, receive data
+                    this.correctPos = (Vector3)stream.ReceiveNext();
+                    break;
+                }
+            case TYPE.Ball:
+                {
+                    // Network player, receive data
+                    this.correctPos = (Vector3)stream.ReceiveNext();
+                    this.correctRot = (Quaternion)stream.ReceiveNext();
+                    break;
+                }
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (type)
+        {
+            case TYPE.Striker:
+                {
+
+                    break;
+                }
+            case TYPE.Ball:
+                {
+                 
                     break;
                 }
         }
@@ -72,7 +126,7 @@ private void OnCollisionEnter(Collision collision)
         Debug.Log("OnTriggerEnter called: ");
         switch (type)
         {
-            
+
             case TYPE.Striker:
                 {
                     OnTriggerEnterStriker(other);
@@ -80,11 +134,13 @@ private void OnCollisionEnter(Collision collision)
                 }
             case TYPE.Ball:
                 {
-                   
+                    OnTriggerEnterBall(other);
                     break;
                 }
         }
     }
+
+
 
     public void InitObject()
     {
@@ -93,7 +149,7 @@ private void OnCollisionEnter(Collision collision)
 
     public void UpdateObject()
     {
-        switch(type)
+        switch (type)
         {
             case TYPE.Striker:
                 {
@@ -108,27 +164,36 @@ private void OnCollisionEnter(Collision collision)
         }
     }
 
-#region common
+    #region common
     [PunRPC]
     public void SetParent(string parent)
     {
         GameObject parentGO = GameObject.Find("parent");
-        if(parentGO)
+        if (parentGO)
         {
             transform.SetParent(parentGO.transform);
         }
 
-        
-    }
-#endregion
 
-#region Striker
+    }
+    #endregion
+
+    #region Striker
     void UpdateStriker()
     {
         if (photonView.isMine)
         {
+
             Vector3 pos = GvrPointerInputModule.CurrentRaycastResult.worldPosition;
-            this.transform.position = pos;
+            BoxCollider box = PhotonNetwork.isMasterClient ? HockeyGame.instance.validArea[0] : HockeyGame.instance.validArea[1];
+
+            if (!FBUtils.PointInOABB(pos, box))
+                return;
+
+            //this.transform.position = pos;
+            //pos.y = transform.position.y;
+            lastPos = pos;
+            rigidBody.MovePosition(pos);
 
             Ray a = new Ray(transform.position, transform.forward);
             Ray b;
@@ -147,12 +212,7 @@ private void OnCollisionEnter(Collision collision)
     }
     void OnTriggerEnterStriker(Collider other)
     {
-        ObjectInGame obj = other.gameObject.GetComponent<ObjectInGame>();
-        if(obj && obj.type == TYPE.Ball)
-        {
-            if(other.gameObject.GetPhotonView().owner.ID != PhotonNetwork.player.ID)
-                other.gameObject.GetPhotonView().TransferOwnership(PhotonNetwork.player.ID);
-        }
+       
     }
 
     bool Deflect(Ray ray, out Ray deflected, out RaycastHit hit)
@@ -173,37 +233,37 @@ private void OnCollisionEnter(Collision collision)
 
     #endregion
 
-#region Ball
-   
-    void OnCollisionEnterBall(Collision other)
-    {
-        Debug.Log("OnCollisionEnterBall With : " + other.gameObject.name);
-        Vector3 forceVector = other.contacts[0].normal * 1.5f;
-        rigidBody.AddForce(forceVector, ForceMode.Impulse);
+    #region Ball
 
+    void OnTriggerEnterBall(Collider other)
+    {
+       
+        Vector3 contact = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position).normalized;
+        direct = Vector3.Reflect(transform.position, contact);
+        direct.y = 0;
+        photonView.RPC("AddForceOverNetwork", PhotonTargets.AllViaServer,direct);
     }
 
     void UpdateBall()
     {
-        if (!photonView.isMine)
-        {
-            rigidBody.isKinematic = true;
-            transform.DOMove(correctPos, 0.2f);
-        }
+        if(photonView.isMine)
+            transform.Translate(direct * Time.deltaTime);
         else
         {
-            rigidBody.isKinematic = false;
-           
+            transform.Translate(direct * Time.deltaTime);
         }
+
     }
 
     [PunRPC]
-    public void AddForceOverNetwork(Vector3 force)
+    public void AddForceOverNetwork(Vector3 correctDirect)
     {
         
         Debug.Log("AddForceOverNetwork called");
-        rigidBody.AddForce(force, ForceMode.Impulse);
+        direct = correctDirect;
     }
+
+    
 
 #endregion
 }

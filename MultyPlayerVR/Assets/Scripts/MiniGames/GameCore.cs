@@ -9,6 +9,13 @@ public class GameCore : PunBehaviour
     // note that master position always 0, others are remote position
     public Transform[] playerPos;
     public State currentState;
+    public GameType currentGame;
+
+    public enum GameType
+    {
+        Hockey = 0
+
+    }
 
     public enum State
     {
