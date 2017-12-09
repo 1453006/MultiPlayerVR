@@ -35,7 +35,11 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         PLAYSOUND,
         STOPSOUND,
         PAUSESOUND,
-        RESUMESOUND, 
+        RESUMESOUND,
+        SHOWTEXT,
+        HIDETEXT,
+        SHOWVIDEO,
+        HIDEVIDEO,
         NONE
     }
       
@@ -53,7 +57,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         if (name == "pauseSound") return Action.PAUSESOUND;
         if (name == "resumeSound") return Action.RESUMESOUND;
         if (name == "stopSound") return Action.STOPSOUND;
-        return Action.NONE;]
+        return Action.NONE;
     }
 
     [System.Serializable]
@@ -102,6 +106,9 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.SHOWTEXT)                BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
+            if (sceneObjectEvent.action1 == Action.HIDETEXT)                BaseUI.instance.HideTextObject(this.gameObject);
+
         }
         if (sceneObjectEvent.trigger2 == Trigger.HOVER)
         {
@@ -110,6 +117,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action2 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action2 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action2 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param2, this.gameObject);
+            if (sceneObjectEvent.action2 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
         }
         if (sceneObjectEvent.trigger3 == Trigger.HOVER)
         {
@@ -118,6 +127,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action3 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action3 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action3 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.SHOWTEXT)                BaseUI.instance.ShowTextObject(sceneObjectEvent.param3, this.gameObject);
+            if (sceneObjectEvent.action3 == Action.HIDETEXT)                BaseUI.instance.HideTextObject(this.gameObject);
         }
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -129,6 +140,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
+            if (sceneObjectEvent.action1 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
         }
         if (sceneObjectEvent.trigger2 == Trigger.EXIT)
         {
@@ -137,6 +150,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action2 == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action2 == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action2 == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param2, this.gameObject);
+            if (sceneObjectEvent.action2 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
         }
         if (sceneObjectEvent.trigger3 == Trigger.EXIT)
         {
@@ -145,6 +160,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action3 == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action3 == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action3 == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param3, this.gameObject);
+            if (sceneObjectEvent.action3 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
         }
     }
 
@@ -157,6 +174,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action1 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
+            if (sceneObjectEvent.action1 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
 
         }
         if (sceneObjectEvent.trigger2 == Trigger.CLICK)
@@ -166,6 +185,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action2 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action2 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action2 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action2 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param2, this.gameObject);
+            if (sceneObjectEvent.action2 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
 
         }
         if (sceneObjectEvent.trigger3 == Trigger.CLICK)
@@ -175,6 +196,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             if (sceneObjectEvent.action3 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
             if (sceneObjectEvent.action3 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
             if (sceneObjectEvent.action3 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (sceneObjectEvent.action3 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param3, this.gameObject);
+            if (sceneObjectEvent.action3 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
 
         }
     }

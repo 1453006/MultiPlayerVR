@@ -23,19 +23,24 @@
       "Name": "START"
     },
     {
-      "id": 6
+      "id": 6,
+      "Name": "BeginDrag"
     },
     {
-      "id": 7
+      "id": 7,
+      "Name": "Dragging"
     },
     {
-      "id": 8
+      "id": 8,
+      "Name": "EndDrag"
     },
     {
-      "id": 9
+      "id": 9,
+      "Name": "Drop"
     },
     {
-      "id": 10
+      "id": 10,
+      "Name": "None"
     }
   ]
 }

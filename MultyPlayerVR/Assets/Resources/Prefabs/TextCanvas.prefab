@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb5c4702c7d6e344b9832a97ae1264d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: InGameHud
+  elementName: text
   moveInSoundAtStart: ~No Sound~
   moveInSoundAtFinish: ~No Sound~
   rotationInSoundAtStart: ~No Sound~
@@ -142,7 +142,7 @@ MonoBehaviour:
   useLoopAnimations: 0
   useOutAnimations: 1
   useInAnimationsStartEvents: 0
-  useInAnimationsFinishEvents: 1
+  useInAnimationsFinishEvents: 0
   useOutAnimationsStartEvents: 0
   useOutAnimationsFinishEvents: 0
   activeInAnimationsPresetIndex: 5
@@ -241,8 +241,8 @@ MonoBehaviour:
       soundName: ~No Sound~
     soundAtFinishReference:
       soundName: ~No Sound~
-    soundAtStart: ~No Sound~
-    soundAtFinish: ~No Sound~
+    soundAtStart: 
+    soundAtFinish: 
   rotationLoop:
     enabled: 0
     autoStart: 0
@@ -256,8 +256,8 @@ MonoBehaviour:
       soundName: ~No Sound~
     soundAtFinishReference:
       soundName: ~No Sound~
-    soundAtStart: ~No Sound~
-    soundAtFinish: ~No Sound~
+    soundAtStart: 
+    soundAtFinish: 
   scaleLoop:
     enabled: 0
     autoStart: 0
@@ -272,8 +272,8 @@ MonoBehaviour:
       soundName: ~No Sound~
     soundAtFinishReference:
       soundName: ~No Sound~
-    soundAtStart: ~No Sound~
-    soundAtFinish: ~No Sound~
+    soundAtStart: 
+    soundAtFinish: 
   fadeLoop:
     enabled: 0
     autoStart: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
       soundName: ~No Sound~
     soundAtFinishReference:
       soundName: ~No Sound~
-    soundAtStart: ~No Sound~
-    soundAtFinish: ~No Sound~
+    soundAtStart: 
+    soundAtFinish: 
   activeOutAnimationsPresetIndex: 14
   outAnimationsPresetNames:
   - CascadeOut
@@ -537,7 +537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00000047684, y: 0.0000028610002}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 43.942, y: 38.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224947138238627092
@@ -547,8 +547,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1866528253550656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.100000024, y: 0.1, z: 0.100000024}
+  m_LocalPosition: {x: 0, y: 0, z: 3.781}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children:
   - {fileID: 224095558389028980}
   m_Father: {fileID: 0}
@@ -556,6 +556,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 3.452}
-  m_SizeDelta: {x: 21.971, y: 19.009}
+  m_AnchoredPosition: {x: -4.7609997, y: 8.97}
+  m_SizeDelta: {x: 21.971, y: 27.009}
   m_Pivot: {x: 0.5, y: 0.5}

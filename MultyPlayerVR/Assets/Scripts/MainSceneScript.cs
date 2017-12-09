@@ -11,6 +11,7 @@ public class MainSceneScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         SceneObjectManager.instance.initSceneInteractiveObjects(this.gameObject.scene);
+
 	}
 	
 	// Update is called once per frame

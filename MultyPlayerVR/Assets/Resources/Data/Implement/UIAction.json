@@ -24,6 +24,22 @@
     },
     {
       "id": 6,
+      "Name": "showText"
+    },
+    {
+      "id": 7,
+      "Name": "hideText"
+    },
+    {
+      "id": 8,
+      "Name": "showVideo"
+    },
+    {
+      "id": 9,
+      "Name": "hideVideo"
+    },
+    {
+      "id": 10,
       "Name": "None"
     }
   ]
