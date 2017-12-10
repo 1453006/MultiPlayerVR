@@ -23,9 +23,8 @@ GameObject:
   - component: {fileID: 23454494953388026}
   - component: {fileID: 114552878769219292}
   - component: {fileID: 54176793167411600}
-  - component: {fileID: 65917665360311796}
   - component: {fileID: 114244380610232966}
-  - component: {fileID: 136178410576469214}
+  - component: {fileID: 65089979438960260}
   m_Layer: 2
   m_Name: Striker
   m_TagString: Untagged
@@ -100,18 +99,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!65 &65917665360311796
+--- !u!65 &65089979438960260
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1784508796693928}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3, y: 3, z: 1.3}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &114244380610232966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,17 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adee815635a6123489a737eb9fca1cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fakePhysicObject: {fileID: 0}
   type: 0
---- !u!136 &136178410576469214
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1784508796693928}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}

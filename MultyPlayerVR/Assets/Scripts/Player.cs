@@ -22,8 +22,7 @@ public class Player : MonoBehaviour {
         }
 
     }
-#endregion
-
+    #endregion
 
     public GameObject defaultLaser;
     public GameObject visualPlayer;
@@ -105,6 +104,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+    
         //test voice
        
         UpdateState();

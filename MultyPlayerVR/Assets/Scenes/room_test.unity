@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 273005079}
   - component: {fileID: 273005078}
   - component: {fileID: 273005080}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: pCube6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 288661730}
   - component: {fileID: 288661729}
   - component: {fileID: 288661731}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: pCube5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_InflateMesh: 1
-  m_SkinWidth: 0.01
+  m_SkinWidth: 0.02
   m_Mesh: {fileID: 4300000, guid: ecb90b7df22afd14b99617243b91a653, type: 3}
 --- !u!33 &534348781
 MeshFilter:
@@ -842,8 +842,8 @@ MonoBehaviour:
   - {fileID: 534348777}
   - {fileID: 534348782}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 800
-  instantiationId: 800
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!1 &570948860
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 570948863}
   - component: {fileID: 570948862}
   - component: {fileID: 570948864}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: pCube4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPos:
   - {fileID: 145718592}
-  - {fileID: 202638974}
+  - {fileID: 145718592}
   currentState: 0
   currentGame: 0
   StrikerSpawnPoint:
@@ -1647,7 +1647,22 @@ Prefab:
     - target: {fileID: 114121638533380430, guid: b0895a34589cb224fbe016fa568d3549,
         type: 2}
       propertyPath: raycasterEventMask.m_Bits
-      value: 4294967291
+      value: 4294967035
+      objectReference: {fileID: 0}
+    - target: {fileID: 114378375034247826, guid: b0895a34589cb224fbe016fa568d3549,
+        type: 2}
+      propertyPath: raycastMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157000234839602, guid: b0895a34589cb224fbe016fa568d3549,
+        type: 2}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 1795722716}
+    - target: {fileID: 114157000234839602, guid: b0895a34589cb224fbe016fa568d3549,
+        type: 2}
+      propertyPath: DebugCam
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0895a34589cb224fbe016fa568d3549, type: 2}
@@ -1752,7 +1767,7 @@ GameObject:
   - component: {fileID: 1413075020}
   - component: {fileID: 1413075019}
   - component: {fileID: 1413075021}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: pCube3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2079,6 +2094,11 @@ Transform:
 --- !u!1 &1777590338 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1867472689786494, guid: b0895a34589cb224fbe016fa568d3549,
+    type: 2}
+  m_PrefabInternal: {fileID: 1153278717}
+--- !u!20 &1795722716 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20800593071180558, guid: b0895a34589cb224fbe016fa568d3549,
     type: 2}
   m_PrefabInternal: {fileID: 1153278717}
 --- !u!1 &1919495022

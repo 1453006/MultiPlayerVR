@@ -19,7 +19,10 @@ public class ObjectInGame : Photon.MonoBehaviour {
 
     private Vector3 direct;
     private Vector3 correctDirect;
+    private float speed;
+    private float correctSpeed;
 
+ 
 
     public enum TYPE
     {
@@ -44,6 +47,10 @@ public class ObjectInGame : Photon.MonoBehaviour {
         meshRenderer = this.GetComponent<MeshRenderer>();
 
         direct = new Vector3(1, 0, 0);
+
+        if (fakePhysicObject)
+            fakePhysicObject.transform.DOMove(HockeyGame.instance.playerPos[1].transform.position,10f);
+
     }
 
     // Update is called once per frame
@@ -234,36 +241,89 @@ public class ObjectInGame : Photon.MonoBehaviour {
     #endregion
 
     #region Ball
+    Tweener tweenDoMove = null;
 
     void OnTriggerEnterBall(Collider other)
     {
        
         Vector3 contact = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position).normalized;
-        direct = Vector3.Reflect(transform.position, contact);
+        direct = Vector3.Reflect(other.transform.position,contact);
+        
+
+        ObjectInGame objClass = other.GetComponent<ObjectInGame>();
+        speed = 2f;
         direct.y = 0;
-        photonView.RPC("AddForceOverNetwork", PhotonTargets.AllViaServer,direct);
+        Debug.Log("direct: "+direct);
+        RaycastHit hit;
+        if (objClass)
+        {
+            if (objClass.instance.type == TYPE.Striker)
+                speed = 4f;
+        }
+
+        float timeToEnd = 0f;
+        Vector3 targetPos = Vector3.zero;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(direct), out hit))
+        {
+            Debug.Log("is raycast");
+            Debug.DrawLine(transform.position, hit.point);
+            float dist = Vector3.Distance(transform.position, hit.point);
+            //Debug.Log(" time is :" + speed / dist);
+            timeToEnd = speed / dist;
+            targetPos = hit.point;
+            tweenDoMove = transform.DOMove(hit.point, timeToEnd);
+            
+        }
+
+        Vector3 fakepos = CalcNextPosition(0.3f, transform.position, speed, direct);
+        Debug.Log("Next position is: " + fakepos);
+        if (fakePhysicObject)
+            fakePhysicObject.transform.position = fakepos;
+       
+        if(PhotonNetwork.isMasterClient)
+        photonView.RPC("AddForceOverNetwork", PhotonTargets.AllViaServer 
+            ,targetPos , timeToEnd,PhotonNetwork.ServerTimestamp);
     }
 
+    float time = 0f;
     void UpdateBall()
     {
-        if(photonView.isMine)
-            transform.Translate(direct * Time.deltaTime);
-        else
-        {
-            transform.Translate(direct * Time.deltaTime);
-        }
+        //transform.Translate(direct * speed * Time.smoothDeltaTime);
+        //time += Time.smoothDeltaTime;
+        //if (time >= 0.2999f)
+        //{
+        //    time = 0;
+        //    Debug.Log("my position is +" + transform.position);
+        //}
+
 
     }
 
     [PunRPC]
-    public void AddForceOverNetwork(Vector3 correctDirect)
+    public void AddForceOverNetwork(Vector3 targetPos,float timeToEnd, int timestamp)
     {
+        float delay = 1.0f / (PhotonNetwork.ServerTimestamp - timestamp);
+        Debug.Log("AddForceOverNetwork called, delay:" + delay);
         
-        Debug.Log("AddForceOverNetwork called");
-        direct = correctDirect;
+        if (delay > timeToEnd)
+            return;
+        //0.1f is time DOmove called
+        //Vector3 nextPos = CalcNextPosition(delay, posWhenSend, correctSpeed, correctDirect);
+        if (tweenDoMove != null)
+            tweenDoMove.ChangeValues(transform.position,targetPos,timeToEnd - delay);
+
+        //tweenDoMove.timeScale *= (tweenDoMove.Duration() - delay) / tweenDoMove.Duration();
+      
+        //direct = correctDirect;
+        //speed = correctSpeed;
     }
 
     
-
+    Vector3 CalcNextPosition(float timestamp, Vector3 pos,float speed, Vector3 direct)
+    {
+        float dist = speed * timestamp;
+        Ray a = new Ray(pos, transform.TransformDirection(direct));
+        return a.GetPoint(dist);   
+    }
 #endregion
 }
