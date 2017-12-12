@@ -27,15 +27,15 @@ public class HockeyGame : GameCore {
     // Use this for initialization
     void Start () {
         ball.SetActive(false);
-      
 
+        base.OnSetGUI();
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         int displayTime = 10000;
-       
+        base.OnUpdateGUI();
         if (currentState == State.CountDown && base.startTime != 0)
         {
             double timetick = PhotonNetwork.time - base.startTime;
@@ -51,11 +51,7 @@ public class HockeyGame : GameCore {
 
     }
 
-    void OnSetGUI()
-    {
-
-        countDown.text = countDownDuration.ToString();
-    }
+  
     public override void OnStartGame()
     {
         base.OnStartGame();

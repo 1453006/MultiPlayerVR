@@ -43,15 +43,26 @@ public class GameCore : PunBehaviour
     // Use this for initialization
     void Start()
     {
-
+      
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+    }
+    public void OnUpdateGUI()
+    {
         countDown.transform.faceToMainCamera();
         txtScore_master.transform.faceToMainCamera();
         txtScore_remote.transform.faceToMainCamera();
+    }
+    public void OnSetGUI()
+    {
+
+        countDown.text = 0.ToString();
+        txtScore_master.text = score_master.ToString();
+        txtScore_remote.text = score_remote.ToString();
     }
 
     public void SetState(State state)
@@ -59,6 +70,7 @@ public class GameCore : PunBehaviour
         switch (state)
         {
             case State.Waiting:{
+                    OnSetGUI();
                     break;
                 }
             case State.CountDown:{
