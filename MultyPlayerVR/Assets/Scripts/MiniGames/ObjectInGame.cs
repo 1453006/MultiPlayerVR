@@ -245,7 +245,16 @@ public class ObjectInGame : Photon.MonoBehaviour {
 
     void OnTriggerEnterBall(Collider other)
     {
-       
+       //check is goal
+        if(other.gameObject == HockeyGame.instance.goals[0].gameObject)
+        {
+            HockeyGame.instance.photonView.RPC("AddScore2Players", PhotonTargets.AllViaServer, 1, 1);
+        }
+        else if (other.gameObject == HockeyGame.instance.goals[1].gameObject)
+        {
+            HockeyGame.instance.photonView.RPC("AddScore2Players", PhotonTargets.AllViaServer, 1, 0);
+        }
+
         Vector3 contact = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position).normalized;
         direct = Vector3.Reflect(other.transform.position,contact);
         

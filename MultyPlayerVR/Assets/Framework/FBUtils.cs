@@ -54,6 +54,12 @@ public static class FBUtils
         return null;
     }
 
+    public static void faceToMainCamera(this Transform parent)
+    {
+        parent.transform.LookAt(Camera.main.transform);
+        parent.transform.rotation = Quaternion.Euler(0, parent.transform.rotation.eulerAngles.y-180, 0);
+    }
+
     /// <summary>
     /// set layer for a game object and its children
     /// </summary>
@@ -137,5 +143,7 @@ public static class FBUtils
         else
             return false;
     }
+
+    
 #endregion
 }

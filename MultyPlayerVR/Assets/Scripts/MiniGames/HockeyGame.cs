@@ -1,33 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HockeyGame : GameCore {
  
     public Transform[] StrikerSpawnPoint;
     public static HockeyGame instance;
 
+    short countDownDuration = 5;
+
 #region Objects In Game
     public GameObject strikerPrefab;
     public GameObject ball;
     public BoxCollider[] validArea;
-#endregion
+    public BoxCollider[] goals;
+    #endregion
+
 
     private void Awake()
     {
         currentGame = GameType.Hockey;
         instance = this;
+        
     }
     // Use this for initialization
     void Start () {
         ball.SetActive(false);
-	}
+      
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	    
-	}
 
+        int displayTime = 10000;
+       
+        if (currentState == State.CountDown && base.startTime != 0)
+        {
+            double timetick = PhotonNetwork.time - base.startTime;
+            displayTime = Mathf.RoundToInt((float)(countDownDuration - timetick));
+            countDown.text = displayTime.ToString();
+            if (displayTime <= 0)
+            {
+                base.SetState(State.Start);
+                countDown.gameObject.SetActive(false);
+            }
+        }
+        
+
+    }
+
+    void OnSetGUI()
+    {
+
+        countDown.text = countDownDuration.ToString();
+    }
     public override void OnStartGame()
     {
         base.OnStartGame();
@@ -52,5 +80,6 @@ public class HockeyGame : GameCore {
         
     }
 
-
+    
+   
 }

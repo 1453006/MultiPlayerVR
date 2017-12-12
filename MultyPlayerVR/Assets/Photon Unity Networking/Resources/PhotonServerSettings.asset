@@ -67,4 +67,6 @@ MonoBehaviour:
   - AddForceOverNetwork
   - SetParent
   - InstantiateBall
+  - SetStartTime
+  - AddScore2Players
   DisableAutoOpenWizard: 1
