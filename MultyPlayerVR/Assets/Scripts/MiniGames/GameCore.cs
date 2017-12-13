@@ -6,6 +6,13 @@ using UnityEngine.UI;
 
 public class GameCore : PunBehaviour
 {
+    public enum ResultType
+    {
+        None = 0,
+        Draw,
+        LocalWin,
+        LocalLoss
+    }
 
     // note that master position always 0, others are remote position
     public Transform[] playerPos;
