@@ -12,8 +12,6 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         instance = this;
     }
 
-
-
     #region common
     public enum Trigger
     {      
@@ -26,6 +24,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         DRAGGING,
         ENDDRAG,
         DROP,
+        SWIPE,
         NONE,
     }
 
@@ -41,23 +40,6 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         SHOWVIDEO,
         HIDEVIDEO,
         NONE
-    }
-      
-   public Trigger triggerTypeToID(string name)
-    {
-        if (name == "Hover") return Trigger.HOVER;
-        if (name == "Exit") return Trigger.EXIT;
-        if (name == "Click") return Trigger.CLICK;
-        return Trigger.NONE;
-    }
-   public Action actionTypeToID(string name)
-    {
-        if (name == "runScript") return Action.RUNSCRIPT;
-        if (name == "playSound") return Action.PLAYSOUND;
-        if (name == "pauseSound") return Action.PAUSESOUND;
-        if (name == "resumeSound") return Action.RESUMESOUND;
-        if (name == "stopSound") return Action.STOPSOUND;
-        return Action.NONE;
     }
 
     [System.Serializable]
@@ -96,117 +78,52 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     #endregion
 
     #region elements
-    public void OnPointerEnter(PointerEventData eventData)
-    {    
-        
-        if (sceneObjectEvent.trigger1 == Trigger.HOVER)
-        {
-            if (sceneObjectEvent.action1 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param1);
-            if (sceneObjectEvent.action1 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param1);
-            if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.SHOWTEXT)                BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
-            if (sceneObjectEvent.action1 == Action.HIDETEXT)                BaseUI.instance.HideTextObject(this.gameObject);
 
-        }
-        if (sceneObjectEvent.trigger2 == Trigger.HOVER)
-        {
-            if (sceneObjectEvent.action2 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param2);
-            if (sceneObjectEvent.action2 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param2);
-            if (sceneObjectEvent.action2 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param2, this.gameObject);
-            if (sceneObjectEvent.action2 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-        }
-        if (sceneObjectEvent.trigger3 == Trigger.HOVER)
-        {
-            if (sceneObjectEvent.action3 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param3);
-            if (sceneObjectEvent.action3 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param3);
-            if (sceneObjectEvent.action3 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.SHOWTEXT)                BaseUI.instance.ShowTextObject(sceneObjectEvent.param3, this.gameObject);
-            if (sceneObjectEvent.action3 == Action.HIDETEXT)                BaseUI.instance.HideTextObject(this.gameObject);
-        }
+    public void OnPointerEnter(PointerEventData eventData)
+    {          
+        if (sceneObjectEvent.trigger1 == Trigger.HOVER)      
+            implementAction(sceneObjectEvent.action1, sceneObjectEvent.param1);      
+        if (sceneObjectEvent.trigger2 == Trigger.HOVER) 
+            implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);    
+        if (sceneObjectEvent.trigger3 == Trigger.HOVER)    
+            implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);                
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         if (sceneObjectEvent.trigger1 == Trigger.EXIT)
-        {
-            if (sceneObjectEvent.action1 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param1);            
-            if (sceneObjectEvent.action1 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param1);
-            if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
-            if (sceneObjectEvent.action1 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-        }
-        if (sceneObjectEvent.trigger2 == Trigger.EXIT)
-        {
-            if (sceneObjectEvent.action2 == Action.RUNSCRIPT) FBScriptManager.instance.runScript(sceneObjectEvent.param2);
-            if (sceneObjectEvent.action2 == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param2);
-            if (sceneObjectEvent.action2 == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param2, this.gameObject);
-            if (sceneObjectEvent.action2 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-        }
-        if (sceneObjectEvent.trigger3 == Trigger.EXIT)
-        {
-            if (sceneObjectEvent.action3 == Action.RUNSCRIPT) FBScriptManager.instance.runScript(sceneObjectEvent.param3);
-            if (sceneObjectEvent.action3 == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param3);
-            if (sceneObjectEvent.action3 == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param3, this.gameObject);
-            if (sceneObjectEvent.action3 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-        }
+            implementAction(sceneObjectEvent.action1, sceneObjectEvent.param1); 
+        if (sceneObjectEvent.trigger2 == Trigger.EXIT) 
+            implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);     
+        if (sceneObjectEvent.trigger3 == Trigger.EXIT)   
+            implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);    
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(sceneObjectEvent.trigger1 == Trigger.CLICK)
-        {
-            if(sceneObjectEvent.action1 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param1);
-            if (sceneObjectEvent.action1 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param1);
-            if (sceneObjectEvent.action1 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action1 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
-            if (sceneObjectEvent.action1 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-
-        }
+        if(sceneObjectEvent.trigger1 == Trigger.CLICK) 
+            implementAction(sceneObjectEvent.action1, sceneObjectEvent.param1);
         if (sceneObjectEvent.trigger2 == Trigger.CLICK)
-        {
-            if (sceneObjectEvent.action2 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param2);
-            if (sceneObjectEvent.action2 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param2);
-            if (sceneObjectEvent.action2 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action2 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param2, this.gameObject);
-            if (sceneObjectEvent.action2 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-
-        }
-        if (sceneObjectEvent.trigger3 == Trigger.CLICK)
-        {
-            if (sceneObjectEvent.action3 == Action.RUNSCRIPT)                FBScriptManager.instance.runScript(sceneObjectEvent.param3);
-            if (sceneObjectEvent.action3 == Action.PLAYSOUND)                SoundResonanceManager.instance.playSfx(this.gameObject, sceneObjectEvent.param3);
-            if (sceneObjectEvent.action3 == Action.PAUSESOUND)                SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.RESUMESOUND)                SoundResonanceManager.instance.resumeSound(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.STOPSOUND)                SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-            if (sceneObjectEvent.action3 == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param3, this.gameObject);
-            if (sceneObjectEvent.action3 == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-
-        }
+            implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);  
+        if (sceneObjectEvent.trigger3 == Trigger.CLICK)    
+            implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);      
     }
-    
-    //Begin Drag
-    void beginDrag()
+
+    void implementAction(Action action, string param)
     {
-        
+        if (action == Action.RUNSCRIPT) FBScriptManager.instance.runScript(param);
+        if (action == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, param);
+        if (action == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+        if (action == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
+        if (action == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+        if (action == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(sceneObjectEvent.param1, this.gameObject);
+        if (action == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
     }
-   
+
+    Vector2 touchDownPos;
+    float swipeAmpToChangePage = 0.35f;
+
+
     #endregion
+
+
 }

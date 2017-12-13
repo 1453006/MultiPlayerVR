@@ -384,6 +384,7 @@ public class FBScript : MonoBehaviour
     void test()
     {
         Debug.Log(cmdData[1].stringValue);
+        nextCmd = true;
     }
     #endregion
 

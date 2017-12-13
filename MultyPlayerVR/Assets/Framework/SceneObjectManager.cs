@@ -5,7 +5,7 @@ using UnityEngine;
 public class SceneObjectManager : MonoBehaviour {
 
     public static SceneObjectManager instance;
-
+    
     private void Awake()
     {
         instance = this;
@@ -55,14 +55,17 @@ public class SceneObjectManager : MonoBehaviour {
                     }
                 }
                 if (interactiveObject)
-                {
+                {                   
                     scnObj = interactiveObject.addMissingComponent<SceneObject>();
-                    GameObject temp = Resources.Load<GameObject>("Prefabs/TextCanVas");
-                    GameObject createdObject =Instantiate(temp, scnObj.transform.Find("TextPos").transform);
-                    createdObject.transform.position = scnObj.transform.Find("TextPos").transform.position;
 
-                    //if (scnObj.GetComponent<BoxCollider>())
-                    //    scnObj.gameObject.AddComponent<BoxCollider>();
+                    GameObject temp = Resources.Load<GameObject>("Prefabs/TextCanVas");
+                    Transform TextPos = scnObj.transform.findChildRecursively("TextPos");
+                    if(TextPos)
+                    {
+                        GameObject createdObject = Instantiate(temp,TextPos);
+                        createdObject.transform.position = TextPos.position;
+                    }
+                    
                     objectDict[objectName] = scnObj;
                 }
             }
