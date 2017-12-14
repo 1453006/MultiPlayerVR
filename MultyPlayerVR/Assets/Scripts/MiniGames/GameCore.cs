@@ -122,7 +122,7 @@ public class GameCore : PunBehaviour
 
     public override void OnJoinedRoom()
     {
-        if (PhotonNetwork.room.PlayerCount == 2)
+        if (PhotonNetwork.room.PlayerCount == 1)
         {
             Debug.Log("OnJoinedRoom: Player Count == 2");
             SetState(State.CountDown);
@@ -137,7 +137,7 @@ public class GameCore : PunBehaviour
     {
         Debug.Log("Other player arrived");
 
-        if (PhotonNetwork.room.PlayerCount == 2)
+        if (PhotonNetwork.room.PlayerCount == 1)
         {
             Debug.Log("OnPhotonPlayerConnected: Player Count == 2");
             SetState(State.CountDown);

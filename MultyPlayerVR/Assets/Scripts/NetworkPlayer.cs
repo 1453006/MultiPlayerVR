@@ -117,44 +117,14 @@ public class NetworkPlayer : Photon.MonoBehaviour {
                 visualHandTransform.rotation = controllerTransform.rotation;
                // visualHandTransform.position = controllerTransform.position;
             }
-            //test shooting
-            if (GvrController.AppButtonDown)
-            {
-                Debug.Log("shoot");
-                RaycastHit hit;
-                if (Physics.Raycast(visualHandTransform.transform.position, visualHandTransform.transform.forward, out hit, range))
-                {
-                    switch (hit.transform.gameObject.tag)
-                    {
-                        case "Player":
-                            {
-                                Debug.Log("hit other");
-                                NetworkPlayer script = hit.transform.gameObject.GetComponent<NetworkPlayer>();
-                                script.GetComponent<PhotonView>().RPC("TakeDamge", PhotonTargets.All, (float)-10f);
-                                break;
-                            }
-                    }
-                }
-            }
+           
         }
 
 
  
     }
 
-  
-
-    [PunRPC]
-    public void TakeDamge(float atk)
-    {
-        health += atk;
-        if (health <= 0)
-        {
-            this.gameObject.SetActive(false);
-            Debug.Log("die");
-        }
-
-    }
+ 
     
     
 }
