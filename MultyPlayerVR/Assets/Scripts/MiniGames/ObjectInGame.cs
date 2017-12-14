@@ -19,10 +19,12 @@ public class ObjectInGame : Photon.MonoBehaviour {
 
     private Vector3 direct;
     private Vector3 correctDirect;
-    private float speed;
+    public float speed;
+
+    private float currentSpeed;
     private float correctSpeed;
 
- 
+
 
     public enum TYPE
     {
@@ -49,7 +51,9 @@ public class ObjectInGame : Photon.MonoBehaviour {
         direct = new Vector3(1, 0, 0);
 
         if (fakePhysicObject)
-            fakePhysicObject.transform.DOMove(HockeyGame.instance.playerPos[1].transform.position,10f);
+            fakePhysicObject.transform.DOMove(HockeyGame.instance.playerPos[1].transform.position, 10f);
+
+        currentSpeed = speed;
 
     }
 
@@ -65,7 +69,7 @@ public class ObjectInGame : Photon.MonoBehaviour {
             OnStreamWrite(stream, info);
         }
         else
-        { 
+        {
             OnStreamReceive(stream, info);
         }
     }
@@ -122,7 +126,7 @@ public class ObjectInGame : Photon.MonoBehaviour {
                 }
             case TYPE.Ball:
                 {
-                 
+
                     break;
                 }
         }
@@ -175,10 +179,15 @@ public class ObjectInGame : Photon.MonoBehaviour {
     [PunRPC]
     public void SetParent(string parent)
     {
-        GameObject parentGO = GameObject.Find("parent");
+        GameObject parentGO = GameObject.Find("table");
         if (parentGO)
         {
             transform.SetParent(parentGO.transform);
+            transform.localScale = new Vector3(1, 1, 1);
+            if (PhotonNetwork.isMasterClient)
+                transform.position = HockeyGame.instance.StrikerSpawnPoint[0].position;
+            else
+                transform.position = HockeyGame.instance.StrikerSpawnPoint[1].position;
         }
 
 
@@ -197,10 +206,10 @@ public class ObjectInGame : Photon.MonoBehaviour {
             if (!FBUtils.PointInOABB(pos, box))
                 return;
 
-            //this.transform.position = pos;
-            //pos.y = transform.position.y;
-            lastPos = pos;
-            rigidBody.MovePosition(pos);
+            this.transform.position = pos;
+            pos.y = transform.position.y;
+            //lastPos = pos;
+            //rigidBody.MovePosition(pos);
 
             Ray a = new Ray(transform.position, transform.forward);
             Ray b;
@@ -219,7 +228,7 @@ public class ObjectInGame : Photon.MonoBehaviour {
     }
     void OnTriggerEnterStriker(Collider other)
     {
-       
+
     }
 
     bool Deflect(Ray ray, out Ray deflected, out RaycastHit hit)
@@ -242,56 +251,61 @@ public class ObjectInGame : Photon.MonoBehaviour {
 
     #region Ball
     Tweener tweenDoMove = null;
-
+   
     void OnTriggerEnterBall(Collider other)
     {
-       //check is goal
-        if(other.gameObject == HockeyGame.instance.goals[0].gameObject)
+        //check area
+        if (other.gameObject == HockeyGame.instance.validArea[0].gameObject ||
+            other.gameObject == HockeyGame.instance.validArea[1].gameObject)
+            return;
+        //check is goal
+        if (other.gameObject == HockeyGame.instance.goals[0].gameObject)
         {
             HockeyGame.instance.photonView.RPC("AddScore2Players", PhotonTargets.AllViaServer, 1, 1);
+            return;
         }
         else if (other.gameObject == HockeyGame.instance.goals[1].gameObject)
         {
             HockeyGame.instance.photonView.RPC("AddScore2Players", PhotonTargets.AllViaServer, 1, 0);
+            return;
         }
 
         Vector3 contact = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position).normalized;
-        direct = Vector3.Reflect(other.transform.position,contact);
-        
+        direct = Vector3.Reflect(transform.position,contact);
+        direct.y = 0;
 
         ObjectInGame objClass = other.GetComponent<ObjectInGame>();
-        speed = 2f;
-        direct.y = 0;
-        Debug.Log("direct: "+direct);
-        RaycastHit hit;
         if (objClass)
         {
             if (objClass.instance.type == TYPE.Striker)
-                speed = 4f;
+                currentSpeed =  (currentSpeed >= 2*speed) ? 2*speed : currentSpeed *= 1.7f;
+        }
+        else
+        {
+            currentSpeed *= 0.9f;
+            
         }
 
         float timeToEnd = 0f;
         Vector3 targetPos = Vector3.zero;
+        RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(direct), out hit))
         {
             Debug.Log("is raycast");
             Debug.DrawLine(transform.position, hit.point);
             float dist = Vector3.Distance(transform.position, hit.point);
             //Debug.Log(" time is :" + speed / dist);
-            timeToEnd = speed / dist;
+            timeToEnd = dist / currentSpeed;
             targetPos = hit.point;
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, Random.Range(15, 30), transform.rotation.eulerAngles.z);
             tweenDoMove = transform.DOMove(hit.point, timeToEnd);
             
         }
 
-        Vector3 fakepos = CalcNextPosition(0.3f, transform.position, speed, direct);
-        Debug.Log("Next position is: " + fakepos);
-        if (fakePhysicObject)
-            fakePhysicObject.transform.position = fakepos;
-       
-        if(PhotonNetwork.isMasterClient)
-        photonView.RPC("AddForceOverNetwork", PhotonTargets.AllViaServer 
-            ,targetPos , timeToEnd,PhotonNetwork.ServerTimestamp);
+
+        if (PhotonNetwork.isMasterClient)
+            photonView.RPC("AddForceOverNetwork", PhotonTargets.AllViaServer
+                , targetPos, timeToEnd, PhotonNetwork.ServerTimestamp);
     }
 
     float time = 0f;
