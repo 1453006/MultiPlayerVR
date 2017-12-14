@@ -216,6 +216,7 @@
     <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioSourceEditor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\3rd Party\SimplePeople\Changelog.txt" />
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Example\ESMReceiverTemplate.shader" />
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Shaders\Combine.shader" />
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Shaders\Depth32.shader" />

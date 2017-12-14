@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ObjectInGame : Photon.MonoBehaviour {
+public class ObjectInGame : Photon.MonoBehaviour,IPointerClickHandler{
 
     public GameObject fakePhysicObject;
 
@@ -24,12 +26,14 @@ public class ObjectInGame : Photon.MonoBehaviour {
     private float currentSpeed;
     private float correctSpeed;
 
+    private float initScaleY;
 
 
     public enum TYPE
     {
         Striker,
-        Ball
+        Ball,
+        Button
     };
 
     public ObjectInGame.TYPE type;
@@ -54,6 +58,7 @@ public class ObjectInGame : Photon.MonoBehaviour {
             fakePhysicObject.transform.DOMove(HockeyGame.instance.playerPos[1].transform.position, 10f);
 
         currentSpeed = speed;
+        initScaleY = this.transform.localScale.y;
 
     }
 
@@ -114,6 +119,36 @@ public class ObjectInGame : Photon.MonoBehaviour {
         }
     }
 
+#region event system
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        switch (type)
+        {
+            case TYPE.Button:
+                {
+                    Debug.Log("Button clicked");
+                   
+                    Sequence sequence = DOTween.Sequence();
+                    sequence.Append(this.transform.DOScaleY(initScaleY * 0.5f, 0.25f).SetEase(Ease.OutSine));
+                    sequence.Append(this.transform.DOScaleY(initScaleY, 0.5f).SetEase(Ease.OutBounce));
+
+                    //answer of math game 
+                    if (!MathGame.instance)
+                    {
+                        Debug.Log("MATH GAME NOT FOUND");
+                        return;
+                    }
+
+                    // make move of math game
+                    string answer = this.GetComponentInChildren<Text>().text.Trim();
+                    int number = int.Parse(answer);
+                    MathGame.instance.MakeTurn(number);
+                    break;
+                }
+        }
+
+    }
+#endregion
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -348,5 +383,9 @@ public class ObjectInGame : Photon.MonoBehaviour {
         Ray a = new Ray(pos, transform.TransformDirection(direct));
         return a.GetPoint(dist);   
     }
+    #endregion
+
+#region Button
+   
 #endregion
 }

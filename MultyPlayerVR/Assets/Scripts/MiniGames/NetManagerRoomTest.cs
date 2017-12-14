@@ -24,13 +24,13 @@ public class NetManagerRoomTest : MonoBehaviour {
     public virtual void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();");
-        PhotonNetwork.JoinOrCreateRoom("room_test", new RoomOptions() { MaxPlayers = 2 }, null);
+        PhotonNetwork.JoinOrCreateRoom("room_test", new RoomOptions() { IsVisible = true, MaxPlayers = 2 }, null);
     }
 
     public virtual void OnJoinedLobby()
     {
         Debug.Log("OnJoinedLobby(). This client is connected and does get a room-list, which gets stored as PhotonNetwork.GetRoomList(). This script now calls: PhotonNetwork.JoinRandomRoom();");
-        PhotonNetwork.JoinOrCreateRoom("room_test", new RoomOptions() { MaxPlayers = 2 }, null);
+        PhotonNetwork.JoinOrCreateRoom("room_test", new RoomOptions() { IsVisible = true, MaxPlayers = 2 }, null);
     }
 
     //public virtual void OnPhotonRandomJoinFailed()

@@ -69,4 +69,5 @@ MonoBehaviour:
   - InstantiateBall
   - SetStartTime
   - AddScore2Players
+  - SendQuestion
   DisableAutoOpenWizard: 1

@@ -107,6 +107,7 @@ public class GameCore : PunBehaviour
     public virtual void OnCountDown()
     {
         //set player Position to be correct
+        Player.instance.SetState(Player.PlayerState.PlayingGame);
         this.photonView.RPC("SetPlayerPosition", PhotonTargets.AllViaServer);
         if (PhotonNetwork.isMasterClient)
         {

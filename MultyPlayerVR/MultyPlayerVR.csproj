@@ -628,6 +628,7 @@
     <Compile Include="Assets\Scripts\MiniGames\BaseInteractiveGame.cs" />
     <Compile Include="Assets\Scripts\MiniGames\GameCore.cs" />
     <Compile Include="Assets\Scripts\MiniGames\HockeyGame.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MathGame.cs" />
     <Compile Include="Assets\Scripts\MiniGames\NetManagerRoomTest.cs" />
     <Compile Include="Assets\Scripts\MiniGames\ObjectInGame.cs" />
     <Compile Include="Assets\Scripts\MiniGames\switchRoomTest.cs" />
@@ -636,6 +637,7 @@
     <Compile Include="Assets\Scripts\Player.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\3rd Party\SimplePeople\Changelog.txt" />
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Example\ESMReceiverTemplate.shader" />
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Shaders\Combine.shader" />
     <None Include="Assets\DaydreamElements\Common\Demo\Art\Effects\ExponentialShadowMaps\Shaders\Depth32.shader" />
