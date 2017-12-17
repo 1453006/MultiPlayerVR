@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using DG.Tweening;
 
 public class NetworkPlayer : Photon.MonoBehaviour {
     GameObject playerGO;
@@ -9,6 +9,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
     public Transform visualHead;
     public Transform visualHandTransform;
     public Transform visualLowerJaw;
+    public float visualLowerJawScaleY;
     public float range = 100f;
     public float health;
 
@@ -43,6 +44,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
     void Start () {
         playerGO = GameObject.Find("Player");
         lowerJawInitPos = visualLowerJaw.transform.localPosition;
+        visualLowerJawScaleY = visualLowerJaw.transform.localScale.y;
         health = 100f;
         foreach (Transform child in playerGO.transform)
         {
@@ -93,7 +95,9 @@ public class NetworkPlayer : Photon.MonoBehaviour {
         //}
         if (photonView.isMine)
         {
-            visualLowerJaw.localPosition = new Vector3(lowerJawInitPos.x, lowerJawInitPos.y - MicInput.instance.MicLoudness/20f, lowerJawInitPos.z);
+
+            //visualLowerJaw.localPosition = new Vector3(lowerJawInitPos.x + MicInput.instance.MicLoudness / 15f, lowerJawInitPos.y, lowerJawInitPos.z);
+            visualLowerJaw.transform.DOScaleY(visualLowerJawScaleY + MicInput.instance.MicLoudness / 4f, 0.2f);
             GvrBasePointer laserPointerImpl = (GvrBasePointer)GvrPointerInputModule.Pointer;
 
             if (GvrControllerInput.TouchDown)

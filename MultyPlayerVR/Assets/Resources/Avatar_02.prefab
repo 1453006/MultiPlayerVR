@@ -749,13 +749,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1719101230580444}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70710677, w: 0.7071069}
-  m_LocalPosition: {x: -0.13972877, y: -0.0029999116, z: 0.25899997}
-  m_LocalScale: {x: 0.1530409, y: 0.035624456, z: 0.19999997}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.13928, y: -0.00301, z: 0.35169}
+  m_LocalScale: {x: 0.16346955, y: 0.03155178, z: 0.020609265}
   m_Children: []
   m_Father: {fileID: 4793820529691742}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &4292232916699492
 Transform:
   m_ObjectHideFlags: 1
@@ -1446,6 +1446,7 @@ MonoBehaviour:
   visualHead: {fileID: 4255240184671784}
   visualHandTransform: {fileID: 4044841929989552}
   visualLowerJaw: {fileID: 4267190918803444}
+  visualLowerJawScaleY: 0
   range: 100
   health: 100
   audioSource: {fileID: 0}
