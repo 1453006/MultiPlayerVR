@@ -1,0 +1,151 @@
+fileFormatVersion: 2
+guid: 5bf133d825745304f934299c9b30926b
+timeCreated: 1466384472
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Box002
+    100002: Box003
+    100004: Line003
+    100006: Rectangle002
+    100008: Rectangle003
+    100010: //RootNode
+    100012: Sphere001
+    100014: Sphere002
+    100016: Sphere003
+    100018: Sphere004
+    100020: roman_sarcophagus
+    100022: roman_sarcophagus_base
+    100024: roman_sarcophagus_inside
+    100026: roman_sarcophagus_supports
+    400000: Box002
+    400002: Box003
+    400004: Line003
+    400006: Rectangle002
+    400008: Rectangle003
+    400010: //RootNode
+    400012: Sphere001
+    400014: Sphere002
+    400016: Sphere003
+    400018: Sphere004
+    400020: roman_sarcophagus
+    400022: roman_sarcophagus_base
+    400024: roman_sarcophagus_inside
+    400026: roman_sarcophagus_supports
+    2300000: Box002
+    2300002: Box003
+    2300004: Line003
+    2300006: Rectangle002
+    2300008: Rectangle003
+    2300010: Sphere001
+    2300012: Sphere002
+    2300014: Sphere003
+    2300016: Sphere004
+    2300018: roman_sarcophagus
+    2300020: roman_sarcophagus_base
+    2300022: roman_sarcophagus_inside
+    2300024: roman_sarcophagus_supports
+    3300000: Box002
+    3300002: Box003
+    3300004: Line003
+    3300006: Rectangle002
+    3300008: Rectangle003
+    3300010: Sphere001
+    3300012: Sphere002
+    3300014: Sphere003
+    3300016: Sphere004
+    3300018: roman_sarcophagus
+    3300020: roman_sarcophagus_base
+    3300022: roman_sarcophagus_inside
+    3300024: roman_sarcophagus_supports
+    4300000: Sphere001
+    4300002: Line003
+    4300004: Rectangle002
+    4300006: Box002
+    4300008: Sphere002
+    4300010: Sphere003
+    4300012: Sphere004
+    4300014: Box003
+    4300016: Rectangle003
+    4300018: roman_sarcophagus
+    4300020: roman_sarcophagus_supports
+    4300022: roman_sarcophagus_base
+    4300024: roman_sarcophagus_inside
+    6400000: Box002
+    6400002: Box003
+    6400004: Line003
+    6400006: Rectangle002
+    6400008: Rectangle003
+    6400010: Sphere001
+    6400012: Sphere002
+    6400014: Sphere003
+    6400016: Sphere004
+    6400018: roman_sarcophagus
+    6400020: roman_sarcophagus_base
+    6400022: roman_sarcophagus_inside
+    6400024: roman_sarcophagus_supports
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
