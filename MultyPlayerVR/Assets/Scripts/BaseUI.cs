@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DoozyUI;
 using UnityEngine.Video;
+
 public class BaseUI : MonoBehaviour {
     public static BaseUI instance;
     string textPosName = "TextPos";
@@ -48,7 +49,13 @@ public class BaseUI : MonoBehaviour {
     {
         RawImage image=obj.transform.Find(clipPosName).GetComponentInChildren<RawImage>();
         VideoPlayer videoPlayer= obj.transform.Find(clipPosName).GetComponentInChildren<VideoPlayer>();
+        AudioSource audioSource = obj.transform.Find(clipPosName).GetComponentInChildren<AudioSource>();
+        audioSource.playOnAwake = false;
         videoPlayer.clip = clip;
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        videoPlayer.EnableAudioTrack(0, true);
+        videoPlayer.SetTargetAudioSource(0, audioSource);
+
         videoPlayer.Prepare();
         while (!videoPlayer.isPrepared)
         {
