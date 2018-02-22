@@ -110,5 +110,54 @@
         "criteria": "[a-zA-Z0-9]"
       }
     ]
+  },
+  {
+    "id": 5,
+    "name": "TextUIObject",
+    "ignore": false,
+    "data": [
+      {
+        "fieldName": "TextID",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Name",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Time",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Author",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Culture",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Content",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      }
+    ]
   }
 ]
