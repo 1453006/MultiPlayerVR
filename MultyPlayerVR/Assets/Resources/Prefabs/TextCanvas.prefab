@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb5c4702c7d6e344b9832a97ae1264d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: text
+  elementName: ~Element Name~
   moveInSoundAtStart: ~No Sound~
   moveInSoundAtFinish: ~No Sound~
   rotationInSoundAtStart: ~No Sound~
